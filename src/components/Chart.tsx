@@ -3,8 +3,13 @@ import { ObservationViewModel, ViewModelGenericTypes } from '../model/Model';
 import { View } from '../model/View';
 import style from './Chart.module.scss'
 import React from 'preact/compat';
+import { ErrorMessage } from './ErrorMessage';
 
 export function Chart(props: { view: View, observations: ObservationViewModel<ViewModelGenericTypes>[] }) {
+  if (props.observations.length == 0) {
+    return <ErrorMessage message="No data" onAirportChange={() => { }} />
+  }
+
   const labelOffset = 15;
   const pointSize = 0.25;
   const gridLineCount = 10;

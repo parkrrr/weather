@@ -4,6 +4,8 @@ import { ObservationViewModel, ViewModelGenericTypes } from "../model/Model"
 import style from './Header.module.scss'
 
 export function Header(props: { latestObservation: ObservationViewModel<ViewModelGenericTypes>, now: Date }) {
+    if (!props.latestObservation) return null;
+
     const getRelativeDateString = () => {
         const n = Math.floor(props.now.getTime() / 1000);
         const t = new Date(props.latestObservation.timestamp).getTime() / 1000;
