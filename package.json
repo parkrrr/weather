@@ -21,7 +21,7 @@
 		"@preact/preset-vite": "^2.8.2",
 		"eslint": "^8.57.0",
 		"eslint-plugin-react": "^7.34.2",
-		"globals": "^15.3.0",
+		"globals": "^15.9.0",
 		"typescript-eslint": "^7.16.0"
 	}
 }
