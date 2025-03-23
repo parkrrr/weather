@@ -12,14 +12,12 @@ export function Navigation(props: { initialView: View, onChange: (view: View) =>
     }
 
     const navItems = views.map((view, i) => {
-        return (<li key={i} value={view.name} className={`${style.view} ${activeView == view ? style.active : ''}`} onClick={() => setView(view)}>{view.name}</li>);
+        return (<div key={i} value={view.name} className={`${style.view} ${activeView == view ? style.active : ''}`} onClick={() => setView(view)}>{view.name}</div>);
     });
 
     return (
         <div className={style['view-container']}>
-            <ul id="navigation">
-                {navItems}
-            </ul>
+            {navItems}    
         </div>
     )
 }
