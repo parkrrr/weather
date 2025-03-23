@@ -9,7 +9,7 @@ import { Observation } from './weather-api/weather-gov-api';
 import { ObservationViewModel, ViewModelGenericTypes } from './model/Model';
 import { Loading } from './components/Loading';
 import { ErrorMessage } from './components/ErrorMessage';
-import './style.scss';
+import style from './App.module.scss';
 import { Scale } from './components/Scale';
 import { VNode } from 'preact';
 import { getObservations } from './weather-api/getObservations';
@@ -108,13 +108,13 @@ export function App() {
 		content = <ErrorMessage message="Invalid view selected" onAirportChange={(a) => changeAirport(a)} />
 	} else {
 		content = (
-			<>
+			<div className={style.app}>
 				<Header latestObservation={viewModels[0]} now={new Date()} />
-				<Subheader latestObservation={viewModels[0]} airport={airport} onAirportChange={(a) => changeAirport(a)} />
+				<Subheader latestObservation={viewModels[0]} stationId={airport} onStationIdChanged={changeAirport} />
 				<Chart view={view} observations={viewModels} />
 				<Navigation initialView={view} onChange={(v) => setView(v)} />
 				<Scale initialScale={scale} onChange={(s) => setScale(s)} />
-			</>
+			</div>
 		);
 	}
 

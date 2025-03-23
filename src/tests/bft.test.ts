@@ -37,7 +37,7 @@ test('Render Chart', async ({ page, browserName }) => {
   // we are not testing that it is displaying accurately
 
   // is the chart div even visible?
-  await expect(page.locator('svg')).toBeVisible();
+  await expect(page.locator('#chart')).toBeVisible();
 
   // does the chart have grid lines?
   const gridLineCount = await page.locator('#gridlines line').count();
@@ -60,14 +60,15 @@ test('Render Chart', async ({ page, browserName }) => {
 
 test('Render Navigation', async ({ page }) => {
   await setupAndNavigate(page, mockObservations);
-  await expect(page.locator('#navigation li')).toHaveCount(5);
-  await expect(page.locator('#navigation li')).toHaveText(['Temp', 'Dew Point', 'Humidity', 'Pressure', 'Wind']);
+  
+  await expect(page.locator('#navigation div')).toHaveCount(5);
+  await expect(page.locator('#navigation div')).toHaveText(['Temp', 'Dew Point', 'Humidity', 'Pressure', 'Wind']);
 });
 
 test('Render Scale', async ({ page }) => {
   await setupAndNavigate(page, mockObservations);
-  await expect(page.locator('#scale li')).toHaveCount(3);
-  await expect(page.locator('#scale li')).toHaveText(['1 day', '3 day', '5 day']);
+  await expect(page.locator('#scale div')).toHaveCount(3);
+  await expect(page.locator('#scale div')).toHaveText(['1 day', '3 day', '5 day']);
 });
 
 test('Invalid station shows error message', async ({ page }) => {

@@ -1,24 +1,17 @@
 @import "../style.scss";
 
 .view-container {
-    text-align: center;
-}
-
-ul {
-    font-size: 0.9em;
-    padding-left: 0;
+    display: flex;
+    margin: 5px;
 }
 
 .view {
     cursor: pointer;
     border-radius: 5px;
     background-color: $background-dark;
-    text-align: center;
     color: $secondary;
     font-weight: 500;
     padding: 5px;
-    list-style-type: none;
-    display: inline-block;
     margin: 2px;
 }
 

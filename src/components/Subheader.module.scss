@@ -2,7 +2,12 @@
 
 .subtitle {
 	font-size: 1.2rem;
-	text-align: center;
 	color: $secondary;
 	font-weight: 500;
+	margin: 5px;
+}
+
+.subtitleItem {
+	display: flex;
+	align-items: center;
 }
