@@ -1,27 +1,10 @@
-import { test, expect, Page } from '@playwright/test';
-import { MockObservationStationCollection } from './MockObservationStationCollection';
+import { test, expect } from '@playwright/test';
 import mockObservations from './mockObservations';
 import mockEmptyObservations from './mockEmptyObservations';
-
-// mock the data so we don't have to rely on the network
-// also avoids inadvertently DDoSing the weather api
-const setupAndNavigate = async (page: Page, observations: MockObservationStationCollection, url?: string) => {
-  if (!url) {
-    url = 'http://127.0.0.1:3000/weather';
-  }
-
-  await page.route(/weather.gov/, route => route.fulfill({
-    status: 200,
-    contentType: 'application/json',
-    body: JSON.stringify(observations)
-  }));
-
-  await page.goto(url);
-  await expect(page.locator('#mockwarning')).toBeVisible();
-}
+import setupMocksAndNavigate from './setupMocksAndNavigate';
 
 test('Render Header', async ({ page }) => {
-  await setupAndNavigate(page, mockObservations);
+  await setupMocksAndNavigate(page, mockObservations);
 
   const headerRegex = new RegExp(/(\d+\.?\d*\s?[a-zA-Z%°]*\sas\sof\s\d*\s?[a-zA-Z]*)/);
   await expect(page.getByText(headerRegex)).toBeVisible();
@@ -31,7 +14,7 @@ test('Render Header', async ({ page }) => {
 });
 
 test('Render Chart', async ({ page, browserName }) => {
-  await setupAndNavigate(page, mockObservations);
+  await setupMocksAndNavigate(page, mockObservations);
 
   // this test verifies that the chart is showing *something*
   // we are not testing that it is displaying accurately
@@ -59,19 +42,18 @@ test('Render Chart', async ({ page, browserName }) => {
 });
 
 test('Render Navigation', async ({ page }) => {
-  await setupAndNavigate(page, mockObservations);
-  
+  await setupMocksAndNavigate(page, mockObservations);
   await expect(page.locator('#navigation div')).toHaveCount(5);
   await expect(page.locator('#navigation div')).toHaveText(['Temp', 'Dew Point', 'Humidity', 'Pressure', 'Wind']);
 });
 
 test('Render Scale', async ({ page }) => {
-  await setupAndNavigate(page, mockObservations);
+  await setupMocksAndNavigate(page, mockObservations);
   await expect(page.locator('#scale div')).toHaveCount(3);
   await expect(page.locator('#scale div')).toHaveText(['1 day', '3 day', '5 day']);
 });
 
 test('Invalid station shows error message', async ({ page }) => {
-  await setupAndNavigate(page, mockEmptyObservations, 'http://127.0.0.1:3000/weather?airport=XYYZ');
+  await setupMocksAndNavigate(page, mockEmptyObservations, 'http://127.0.0.1:3000/weather?airport=XYYZ');
   await expect(page.locator('h2')).toHaveText('No observations from XYYZ');
 });
