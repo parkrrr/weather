@@ -17,7 +17,7 @@ export function Scale(props: { initialScale: string, onChange: (scale: string) =
     });
 
     return (
-        <div className={style['view-container']}>
+        <div id="scale" className={style['view-container']}>
             {navItems}
         </div>
     )

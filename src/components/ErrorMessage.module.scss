@@ -3,6 +3,7 @@
 .error {
 	display: flex;
 	min-height: 128px;
+	min-width: 128px;
 	background: url('@/assets/error.png') 50% 50% no-repeat $background-color;
 }
 
