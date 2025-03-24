@@ -18,18 +18,24 @@ export function Chart(props: { view: View, observations: ObservationViewModel<Vi
   const trianglePointiness = 2;
   const triangleSize = 1.0;
 
+  // find the minimum and maximum value for the data being shown
   let minimumValue = Math.min(...props.observations.map(o => o.toDataPoint().y));
   let maximumValue = Math.max(...props.observations.map(o => o.toDataPoint().y));
 
+  // the reference value allows a specific value to always be visible
+  // this is used for the pressure view to always show 29.92 to maintain the scale
   const referenceValue = props.view.referenceValue();
   if (referenceValue) {
     minimumValue = Math.min(referenceValue, minimumValue);
     maximumValue = Math.max(referenceValue, maximumValue);
   }
 
+  // find the minimum and maximum timestamps for the data being shown
   const minimumTimestamp = Math.min(...props.observations.map(o => o.toDataPoint().x.getTime()));
   const maximumTimestamp = Math.max(...props.observations.map(o => o.toDataPoint().x.getTime()));
 
+  // generate evenly-spaced values between two values
+  // this is used to generate scale labels
   function getRange(minimum: number, maximum: number, count: number) {
     const spacing = (maximum - minimum) / (count - 1);
     return Array.from({ length: count }, (_, i) => spacing * i + minimum);
@@ -38,7 +44,7 @@ export function Chart(props: { view: View, observations: ObservationViewModel<Vi
   const gridLinesRange = getRange(minimumValue, maximumValue, gridLineCount);
   const dateLinesRange = getRange(minimumTimestamp, maximumTimestamp, gridLineCount).map(o => new Date(o));
 
-  const verticalGridLines = gridLinesRange.map((o, i) => {
+  const verticalGridLines = gridLinesRange.map((_, i) => {
     const x = ((i / (gridLineCount - 1)) * (100 - labelOffset)) + labelOffset;
     return { x1: x, y1: 0, x2: x, y2: 100 };
   });
@@ -61,9 +67,13 @@ export function Chart(props: { view: View, observations: ObservationViewModel<Vi
   const points = props.observations.map(o => {
     const point = o.toDataPoint();
 
+    // normalize the point on the graph
+    // it's important to map against the timestamp appropriately -- sometimes the data contains big gaps in time
     const x = ((point.x.getTime() - minimumTimestamp) / (maximumTimestamp - minimumTimestamp)) * (100 - labelOffset) + labelOffset;
     const y = 100 - ((point.y - minimumValue) / (maximumValue - minimumValue)) * 100;
     const qc = o.hasPassedQualityControl;
+
+    // used to display wind data, which has a directional component as well
     const hasAdditionalValue = Object.keys(o.value).length > 1;
     return { x, y, qc, hasAdditionalValue, value: o.value };
   });
