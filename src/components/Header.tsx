@@ -54,5 +54,9 @@ export function Header(props: { latestObservation: ObservationViewModel<ViewMode
         };
     }, []);
 
+    useEffect(() => {
+        setRelativeDateString(getRelativeDateString());
+    }, [props.latestObservation]);
+
     return (<h2 className={style.title}>{props.latestObservation.formatValue()} as of {relativeDateString}</h2>);
 }
