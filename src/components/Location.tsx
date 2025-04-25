@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'preact/compat';
 import style from './Location.module.scss';
 import { getStationsByLocation } from '../weather-api/getStationByLocation';
 import { StationPicker } from './StationPicker';
-import { ObservationStation } from '../weather-api/weather-gov-api';
+import { ObservationStationCollectionGeoJson } from '../weather-api/weather-gov-api';
 
 export function Location(props: { onStationIdChanged: (stationId: string | null) => void }) {
     const [useGeolocation, setUseGeolocation] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const [selecting, setSelecting] = useState<boolean>(false);
-    const [stations, setStations] = useState<ObservationStation[]>([]);
+    const [stations, setStations] = useState<ObservationStationCollectionGeoJson>();
+    const [location, setLocation] = useState<GeolocationPosition | null>(null);
 
     useEffect(() => {
         if (navigator.permissions && navigator.permissions.query) {
@@ -37,23 +38,29 @@ export function Location(props: { onStationIdChanged: (stationId: string | null)
 
     const getStation = async (position: GeolocationPosition) => {
         try {
+            setLocation(position);
             setLoading(true);
-            await getStationsByLocation(position).then((stations: ObservationStation[]) => {
+            await getStationsByLocation(position).then((stations) => {
                 setStations(stations);
                 setSelecting(true);
             });
+        }
+        catch {
+            setSelecting(true); // show menu to display error
+            setStations(undefined);
         }
         finally {
             setLoading(false);
         }
     }
 
-    const onSelect = (stationIdentifier: string): void => {
+    const onSelect = (stationIdentifier: string | null): void => {
+        setSelecting(false);
+
         if (!stationIdentifier) {
             return;
         }
 
-        setSelecting(false);
         props.onStationIdChanged(stationIdentifier);
     }
 
@@ -85,11 +92,11 @@ export function Location(props: { onStationIdChanged: (stationId: string | null)
     if (useGeolocation) {
         content = (<>{loading ? loadingIcon : autolocateIcon}{editIcon}</>);
 
-        if (selecting){
+        if (selecting && location) {
             return (
                 <>
                     {content}
-                    <StationPicker stations={stations} onStationChange={onSelect} />
+                    <StationPicker currentLatitude={location.coords.latitude} currentLongitude={location.coords.longitude} stations={stations} onStationChange={onSelect} />
                 </>
             );
         }
