@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'preact/compat';
 import style from './Location.module.scss';
-import { getStationsByLocation } from '../weather-api/getStationByLocation';
+import { getStationsByLocation } from '../weather-api/getStationsByLocation';
 import { StationPicker } from './StationPicker';
 import { ObservationStationCollectionGeoJson } from '../weather-api/weather-gov-api';
 
