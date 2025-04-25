@@ -87,10 +87,8 @@ export function Location(props: { onStationIdChanged: (stationId: string | null)
         </div>
     </div>);
     
-    let content = editIcon;
-
     if (useGeolocation) {
-        content = (<>{loading ? loadingIcon : autolocateIcon}{editIcon}</>);
+        const content = (<>{loading ? loadingIcon : autolocateIcon}{editIcon}</>);
 
         if (selecting && location) {
             return (
