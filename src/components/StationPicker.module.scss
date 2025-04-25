@@ -1,0 +1,25 @@
+@import "../style.scss";
+
+.menu {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: $background-dark;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 90vw;
+    width: 300px;
+}
+
+.menu li {
+    border: 1px solid $primary;
+    padding: 10px 20px;
+    margin: 5px 0;
+    text-align: center;
+    cursor: pointer;
+    background-color: $background-dark;
+    color: $secondary;
+    list-style: none
+}
