@@ -38,7 +38,7 @@ const getStationByGridpoint = async (gridId: string, gridX: number, gridY: numbe
     await throwErrorOrContinue(resp);
 
     const data = await resp.json() as ObservationStationCollectionGeoJson;
-    if (!data) {
+    if (!data || !Array.isArray(data.features) || data.features.length === 0) {
         throw new Error('No station found');
     }
 
