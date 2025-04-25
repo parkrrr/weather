@@ -20,10 +20,10 @@ export const getStationsByLocation = async (location: GeolocationPosition): Prom
         throw new Error('Invalid grid data');
     }
 
-    return await getStationByGridpoint(data.properties.gridId, data.properties.gridX, data.properties.gridY);
+    return await getStationsByGridpoint(data.properties.gridId, data.properties.gridX, data.properties.gridY);
 }
 
-const getStationByGridpoint = async (gridId: string, gridX: number, gridY: number): Promise<ObservationStationCollectionGeoJson> => {
+const getStationsByGridpoint = async (gridId: string, gridX: number, gridY: number): Promise<ObservationStationCollectionGeoJson> => {
 
     const request = new Request(`https://api.weather.gov/gridpoints/${gridId}/${gridX},${gridY}/stations`, {
         method: 'GET',
