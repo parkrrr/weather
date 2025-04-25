@@ -1,8 +1,8 @@
 import { USER_AGENT } from "./constants";
 import { throwErrorOrContinue } from "./throwErrorOrContinue";
-import { ObservationStationCollectionGeoJson, PointGeoJson } from "./weather-gov-api";
+import { ObservationStation, ObservationStationCollectionGeoJson, PointGeoJson } from "./weather-gov-api";
 
-export const getStationByLocation = async (location: GeolocationPosition): Promise<string> => {
+export const getStationsByLocation = async (location: GeolocationPosition): Promise<ObservationStation[]> => {
     const request = new Request(`https://api.weather.gov/points/${location.coords.latitude},${location.coords.longitude}`, {
         method: 'GET',
         headers: new Headers({
@@ -23,7 +23,7 @@ export const getStationByLocation = async (location: GeolocationPosition): Promi
     return await getStationByGridpoint(data.properties.gridId, data.properties.gridX, data.properties.gridY);
 }
 
-const getStationByGridpoint = async (gridId: string, gridX: number, gridY: number): Promise<string> => {
+const getStationByGridpoint = async (gridId: string, gridX: number, gridY: number): Promise<ObservationStation[]> => {
 
     const request = new Request(`https://api.weather.gov/gridpoints/${gridId}/${gridX},${gridY}/stations`, {
         method: 'GET',
@@ -38,10 +38,10 @@ const getStationByGridpoint = async (gridId: string, gridX: number, gridY: numbe
     await throwErrorOrContinue(resp);
 
     const data = await resp.json() as ObservationStationCollectionGeoJson;
-    const station = data.features[0].properties.stationIdentifier;
-    if (!station) {
+    const stations = data.features.map((feat: { properties: ObservationStation; }) => feat.properties);
+    if (!stations) {
         throw new Error('No station found');
     }
 
-    return station;
+    return stations;
 }

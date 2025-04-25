@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'preact/compat';
 import style from './Location.module.scss';
-import { getStationByLocation } from '../weather-api/getStationByLocation';
+import { getStationsByLocation } from '../weather-api/getStationByLocation';
+import { StationPicker } from './StationPicker';
+import { ObservationStation } from '../weather-api/weather-gov-api';
 
 export function Location(props: { onStationIdChanged: (stationId: string | null) => void }) {
     const [useGeolocation, setUseGeolocation] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const [selecting, setSelecting] = useState<boolean>(false);
+    const [stations, setStations] = useState<ObservationStation[]>([]);
 
     useEffect(() => {
         if (navigator.permissions && navigator.permissions.query) {
@@ -34,15 +38,23 @@ export function Location(props: { onStationIdChanged: (stationId: string | null)
     const getStation = async (position: GeolocationPosition) => {
         try {
             setLoading(true);
-            await getStationByLocation(position).then((stationId) => {
-                if (stationId) {
-                    props.onStationIdChanged(stationId);
-                }
+            await getStationsByLocation(position).then((stations: ObservationStation[]) => {
+                setStations(stations);
+                setSelecting(true);
             });
         }
         finally {
             setLoading(false);
         }
+    }
+
+    const onSelect = (stationIdentifier: string): void => {
+        if (!stationIdentifier) {
+            return;
+        }
+
+        setSelecting(false);
+        props.onStationIdChanged(stationIdentifier);
     }
 
     const loadingIcon = (<div className={style.location}>
@@ -68,8 +80,22 @@ export function Location(props: { onStationIdChanged: (stationId: string | null)
         </div>
     </div>);
     
+    let content = editIcon;
+
     if (useGeolocation) {
-        return (<>{loading ? loadingIcon : autolocateIcon}{editIcon}</>);
+        content = (<>{loading ? loadingIcon : autolocateIcon}{editIcon}</>);
+
+        if (selecting){
+            return (
+                <>
+                    {content}
+                    <StationPicker stations={stations} onStationChange={onSelect} />
+                </>
+            );
+        }
+        else {
+            return content;
+        }
     }
 
     return editIcon;
