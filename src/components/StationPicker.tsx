@@ -24,9 +24,9 @@ export function StationPicker(props: { currentLatitude: number, currentLongitude
 
     if (!props.stations) {
         return (
-        <ul className={style.menu}>
-        <li onClick={() => props.onStationChange(null)}>No stations found</li>
-        </ul>);
+            <ul className={style.menu}>
+                <li onClick={() => props.onStationChange(null)}>No stations found</li>
+            </ul>);
 
     }
 
