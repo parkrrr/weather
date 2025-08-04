@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import { ObservationViewModel, ViewModelGenericTypes } from '../model/Model';
 import { View } from '../model/View';
 import style from './Chart.module.scss'
