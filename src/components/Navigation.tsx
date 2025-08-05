@@ -12,7 +12,7 @@ export function Navigation(props: { initialView: View, onChange: (view: View) =>
     }
 
     const navItems = views.map((view, i) => {
-        return (<div key={i} value={view.name} className={`${style.view} ${activeView == view ? style.active : ''}`} onClick={() => setView(view)}>{view.name}</div>);
+        return (<div key={i} className={`${style.view} ${activeView == view ? style.active : ''}`} onClick={() => setView(view)}>{view.name}</div>);
     });
 
     return (
