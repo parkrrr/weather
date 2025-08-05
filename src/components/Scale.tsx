@@ -13,7 +13,7 @@ export function Scale(props: { initialScale: string, onChange: (scale: string) =
     const scales = ['1', '3', '5'];
 
     const navItems = scales.map((scale, i) => {
-        return (<div key={i} value={scale} className={`${style.view} ${activeScale == scale ? style.active : ''}`} onClick={() => setScale(scale)}>{scale} day</div>);
+        return (<div key={i} className={`${style.view} ${activeScale == scale ? style.active : ''}`} onClick={() => setScale(scale)}>{scale} day</div>);
     });
 
     return (
