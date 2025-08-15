@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -9,10 +10,390 @@
  * ---------------------------------------------------------------
  */
 
+export enum StateTerritoryCode {
+  AL = "AL",
+  AK = "AK",
+  AS = "AS",
+  AR = "AR",
+  AZ = "AZ",
+  CA = "CA",
+  CO = "CO",
+  CT = "CT",
+  DE = "DE",
+  DC = "DC",
+  FL = "FL",
+  GA = "GA",
+  GU = "GU",
+  HI = "HI",
+  ID = "ID",
+  IL = "IL",
+  IN = "IN",
+  IA = "IA",
+  KS = "KS",
+  KY = "KY",
+  LA = "LA",
+  ME = "ME",
+  MD = "MD",
+  MA = "MA",
+  MI = "MI",
+  MN = "MN",
+  MS = "MS",
+  MO = "MO",
+  MT = "MT",
+  NE = "NE",
+  NV = "NV",
+  NH = "NH",
+  NJ = "NJ",
+  NM = "NM",
+  NY = "NY",
+  NC = "NC",
+  ND = "ND",
+  OH = "OH",
+  OK = "OK",
+  OR = "OR",
+  PA = "PA",
+  PR = "PR",
+  RI = "RI",
+  SC = "SC",
+  SD = "SD",
+  TN = "TN",
+  TX = "TX",
+  UT = "UT",
+  VT = "VT",
+  VI = "VI",
+  VA = "VA",
+  WA = "WA",
+  WV = "WV",
+  WI = "WI",
+  WY = "WY",
+  MP = "MP",
+  PW = "PW",
+  FM = "FM",
+  MH = "MH",
+}
+
+export enum NWSZoneType {
+  Land = "land",
+  Marine = "marine",
+  Forecast = "forecast",
+  Public = "public",
+  Coastal = "coastal",
+  Offshore = "offshore",
+  Fire = "fire",
+  County = "county",
+}
+
+/** Three-letter identifier for a NWS Regional HQ. */
+export enum NWSRegionalHQId {
+  ARH = "ARH",
+  CRH = "CRH",
+  ERH = "ERH",
+  PRH = "PRH",
+  SRH = "SRH",
+  WRH = "WRH",
+}
+
+/** Three-letter identifier for NWS National HQ. */
+export enum NWSNationalHQId {
+  NWS = "NWS",
+}
+
+/** Three-letter identifier for a NWS office. */
+export enum NWSForecastOfficeId {
+  AKQ = "AKQ",
+  ALY = "ALY",
+  BGM = "BGM",
+  BOX = "BOX",
+  BTV = "BTV",
+  BUF = "BUF",
+  CAE = "CAE",
+  CAR = "CAR",
+  CHS = "CHS",
+  CLE = "CLE",
+  CTP = "CTP",
+  GSP = "GSP",
+  GYX = "GYX",
+  ILM = "ILM",
+  ILN = "ILN",
+  LWX = "LWX",
+  MHX = "MHX",
+  OKX = "OKX",
+  PBZ = "PBZ",
+  PHI = "PHI",
+  RAH = "RAH",
+  RLX = "RLX",
+  RNK = "RNK",
+  ABQ = "ABQ",
+  AMA = "AMA",
+  BMX = "BMX",
+  BRO = "BRO",
+  CRP = "CRP",
+  EPZ = "EPZ",
+  EWX = "EWX",
+  FFC = "FFC",
+  FWD = "FWD",
+  HGX = "HGX",
+  HUN = "HUN",
+  JAN = "JAN",
+  JAX = "JAX",
+  KEY = "KEY",
+  LCH = "LCH",
+  LIX = "LIX",
+  LUB = "LUB",
+  LZK = "LZK",
+  MAF = "MAF",
+  MEG = "MEG",
+  MFL = "MFL",
+  MLB = "MLB",
+  MOB = "MOB",
+  MRX = "MRX",
+  OHX = "OHX",
+  OUN = "OUN",
+  SHV = "SHV",
+  SJT = "SJT",
+  SJU = "SJU",
+  TAE = "TAE",
+  TBW = "TBW",
+  TSA = "TSA",
+  ABR = "ABR",
+  APX = "APX",
+  ARX = "ARX",
+  BIS = "BIS",
+  BOU = "BOU",
+  CYS = "CYS",
+  DDC = "DDC",
+  DLH = "DLH",
+  DMX = "DMX",
+  DTX = "DTX",
+  DVN = "DVN",
+  EAX = "EAX",
+  FGF = "FGF",
+  FSD = "FSD",
+  GID = "GID",
+  GJT = "GJT",
+  GLD = "GLD",
+  GRB = "GRB",
+  GRR = "GRR",
+  ICT = "ICT",
+  ILX = "ILX",
+  IND = "IND",
+  IWX = "IWX",
+  JKL = "JKL",
+  LBF = "LBF",
+  LMK = "LMK",
+  LOT = "LOT",
+  LSX = "LSX",
+  MKX = "MKX",
+  MPX = "MPX",
+  MQT = "MQT",
+  OAX = "OAX",
+  PAH = "PAH",
+  PUB = "PUB",
+  RIW = "RIW",
+  SGF = "SGF",
+  TOP = "TOP",
+  UNR = "UNR",
+  BOI = "BOI",
+  BYZ = "BYZ",
+  EKA = "EKA",
+  FGZ = "FGZ",
+  GGW = "GGW",
+  HNX = "HNX",
+  LKN = "LKN",
+  LOX = "LOX",
+  MFR = "MFR",
+  MSO = "MSO",
+  MTR = "MTR",
+  OTX = "OTX",
+  PDT = "PDT",
+  PIH = "PIH",
+  PQR = "PQR",
+  PSR = "PSR",
+  REV = "REV",
+  SEW = "SEW",
+  SGX = "SGX",
+  SLC = "SLC",
+  STO = "STO",
+  TFX = "TFX",
+  TWC = "TWC",
+  VEF = "VEF",
+  AER = "AER",
+  AFC = "AFC",
+  AFG = "AFG",
+  AJK = "AJK",
+  ALU = "ALU",
+  GUM = "GUM",
+  HPA = "HPA",
+  HFO = "HFO",
+  PPG = "PPG",
+  STU = "STU",
+  NH1 = "NH1",
+  NH2 = "NH2",
+  ONA = "ONA",
+  ONP = "ONP",
+}
+
+/** Three-letter identifier for a Center Weather Service Unit (CWSU). */
+export enum NWSCenterWeatherServiceUnitId {
+  ZAB = "ZAB",
+  ZAN = "ZAN",
+  ZAU = "ZAU",
+  ZBW = "ZBW",
+  ZDC = "ZDC",
+  ZDV = "ZDV",
+  ZFA = "ZFA",
+  ZFW = "ZFW",
+  ZHU = "ZHU",
+  ZID = "ZID",
+  ZJX = "ZJX",
+  ZKC = "ZKC",
+  ZLA = "ZLA",
+  ZLC = "ZLC",
+  ZMA = "ZMA",
+  ZME = "ZME",
+  ZMP = "ZMP",
+  ZNY = "ZNY",
+  ZOA = "ZOA",
+  ZOB = "ZOB",
+  ZSE = "ZSE",
+  ZTL = "ZTL",
+}
+
+export enum MetarSkyCoverage {
+  OVC = "OVC",
+  BKN = "BKN",
+  SCT = "SCT",
+  FEW = "FEW",
+  SKC = "SKC",
+  CLR = "CLR",
+  VV = "VV",
+}
+
+/**
+ * Marine region code. These are groups of marine areas combined.
+ * * AL: Alaska waters (PK)
+ * * AT: Atlantic Ocean (AM, AN)
+ * * GL: Great Lakes (LC, LE, LH, LM, LO, LS, SL)
+ * * GM: Gulf of Mexico (GM)
+ * * PA: Eastern Pacific Ocean and U.S. West Coast (PZ)
+ * * PI: Central and Western Pacific (PH, PM, PS)
+ */
+export enum MarineRegionCode {
+  AL = "AL",
+  AT = "AT",
+  GL = "GL",
+  GM = "GM",
+  PA = "PA",
+  PI = "PI",
+}
+
+/**
+ * Marine area code as defined in NWS Directive 10-302:
+ * * AM: Western North Atlantic Ocean and along U.S. East Coast south of Currituck Beach Light NC following the coastline into Gulf of Mexico to Ocean Reef FL including the Caribbean
+ * * AN: Western North Atlantic Ocean and along U.S. East Coast from Canadian border south to Currituck Beach Light NC
+ * * GM: Gulf of Mexico and along the U.S. Gulf Coast from the Mexican border to Ocean Reef FL
+ * * LC: Lake St. Clair
+ * * LE: Lake Erie
+ * * LH: Lake Huron
+ * * LM: Lake Michigan
+ * * LO: Lake Ontario
+ * * LS: Lake Superior
+ * * PH: Central Pacific Ocean including Hawaiian waters
+ * * PK: North Pacific Ocean near Alaska and along Alaska coastline including the Bering Sea and the Gulf of Alaska
+ * * PM: Western Pacific Ocean including Mariana Island waters
+ * * PS: South Central Pacific Ocean including American Samoa waters
+ * * PZ: Eastern North Pacific Ocean and along U.S. West Coast from Canadian border to Mexican border
+ * * SL: St. Lawrence River above St. Regis
+ */
+export enum MarineAreaCode {
+  AM = "AM",
+  AN = "AN",
+  GM = "GM",
+  LC = "LC",
+  LE = "LE",
+  LH = "LH",
+  LM = "LM",
+  LO = "LO",
+  LS = "LS",
+  PH = "PH",
+  PK = "PK",
+  PM = "PM",
+  PS = "PS",
+  PZ = "PZ",
+  SL = "SL",
+}
+
+/**
+ * Land region code. These correspond to the six NWS regional headquarters:
+ * * AR: Alaska Region
+ * * CR: Central Region
+ * * ER: Eastern Region
+ * * PR: Pacific Region
+ * * SR: Southern Region
+ * * WR: Western Region
+ */
+export enum LandRegionCode {
+  AR = "AR",
+  CR = "CR",
+  ER = "ER",
+  PR = "PR",
+  SR = "SR",
+  WR = "WR",
+}
+
+/**
+ * Denotes the units used in the textual portions of the forecast.
+ * @default "us"
+ */
+export enum GridpointForecastUnits {
+  Us = "us",
+  Si = "si",
+}
+
+export enum AlertUrgency {
+  Immediate = "Immediate",
+  Expected = "Expected",
+  Future = "Future",
+  Past = "Past",
+  Unknown = "Unknown",
+}
+
+export enum AlertStatus {
+  Actual = "Actual",
+  Exercise = "Exercise",
+  System = "System",
+  Test = "Test",
+  Draft = "Draft",
+}
+
+export enum AlertSeverity {
+  Extreme = "Extreme",
+  Severe = "Severe",
+  Moderate = "Moderate",
+  Minor = "Minor",
+  Unknown = "Unknown",
+}
+
+export enum AlertMessageType {
+  Alert = "Alert",
+  Update = "Update",
+  Cancel = "Cancel",
+  Ack = "Ack",
+  Error = "Error",
+}
+
+export enum AlertCertainty {
+  Observed = "Observed",
+  Likely = "Likely",
+  Possible = "Possible",
+  Unlikely = "Unlikely",
+  Unknown = "Unknown",
+}
+
 /**
  * An object representing a public alert message.
  * Unless otherwise noted, the fields in this object correspond to the National Weather Service CAP v1.2 specification, which extends the OASIS Common Alerting Protocol (CAP) v1.2 specification and USA Integrated Public Alert and Warning System (IPAWS) Profile v1.0. Refer to this documentation for more complete information.
- * http://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://alerts.weather.gov/#technical-notes-v12
+ * http://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://vlab.noaa.gov/web/nws-common-alerting-protocol/cap-documentation
  */
 export interface Alert {
   /** The identifier of the alert message. */
@@ -105,12 +486,31 @@ export interface Alert {
    * The code denoting the type of action recommended for the target audience.
    * This corresponds to responseType in the CAP specification.
    */
-  response?: "Shelter" | "Evacuate" | "Prepare" | "Execute" | "Avoid" | "Monitor" | "Assess" | "AllClear" | "None";
+  response?:
+    | "Shelter"
+    | "Evacuate"
+    | "Prepare"
+    | "Execute"
+    | "Avoid"
+    | "Monitor"
+    | "Assess"
+    | "AllClear"
+    | "None";
   /**
    * System-specific additional parameters associated with the alert message.
    * The keys in this object correspond to parameter definitions in the NWS CAP specification.
    */
   parameters?: Record<string, any[]>;
+  /** The code denoting the intended distribution of the alert message. */
+  scope?: "Public" | "Restricted" | "Private";
+  /** The code denoting the special handling of the alert message. */
+  code?: string;
+  /** The code denoting the language of the info sub-element of the alert message. */
+  language?: string;
+  /** The identifier of the hyperlink associating additional information within the alert message. */
+  web?: string;
+  /** System-specific code identifiying the event type of the alert message The keys in this object correspond to eventCode definitions in the NWS CAP specification. */
+  eventCode?: Record<string, any[]>;
 }
 
 export interface AlertCollection {
@@ -130,7 +530,7 @@ export type AlertCollectionGeoJson = GeoJsonFeatureCollection & {
     /**
      * An object representing a public alert message.
      * Unless otherwise noted, the fields in this object correspond to the National Weather Service CAP v1.2 specification, which extends the OASIS Common Alerting Protocol (CAP) v1.2 specification and USA Integrated Public Alert and Warning System (IPAWS) Profile v1.0. Refer to this documentation for more complete information.
-     * http://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://alerts.weather.gov/#technical-notes-v12
+     * http://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://vlab.noaa.gov/web/nws-common-alerting-protocol/cap-documentation
      */
     properties?: Alert;
   }[];
@@ -147,7 +547,7 @@ export type AlertGeoJson = GeoJsonFeature & {
   /**
    * An object representing a public alert message.
    * Unless otherwise noted, the fields in this object correspond to the National Weather Service CAP v1.2 specification, which extends the OASIS Common Alerting Protocol (CAP) v1.2 specification and USA Integrated Public Alert and Warning System (IPAWS) Profile v1.0. Refer to this documentation for more complete information.
-   * http://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://alerts.weather.gov/#technical-notes-v12
+   * http://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://vlab.noaa.gov/web/nws-common-alerting-protocol/cap-documentation
    */
   properties?: Alert;
 };
@@ -158,46 +558,6 @@ export interface AlertJsonLd {
 
 /** The identifier of the alert message. */
 export type AlertId = string;
-
-export enum AlertCertainty {
-  Observed = "Observed",
-  Likely = "Likely",
-  Possible = "Possible",
-  Unlikely = "Unlikely",
-  Unknown = "Unknown",
-}
-
-export enum AlertMessageType {
-  Alert = "Alert",
-  Update = "Update",
-  Cancel = "Cancel",
-  Ack = "Ack",
-  Error = "Error",
-}
-
-export enum AlertSeverity {
-  Extreme = "Extreme",
-  Severe = "Severe",
-  Moderate = "Moderate",
-  Minor = "Minor",
-  Unknown = "Unknown",
-}
-
-export enum AlertStatus {
-  Actual = "Actual",
-  Exercise = "Exercise",
-  System = "System",
-  Test = "Test",
-  Draft = "Draft",
-}
-
-export enum AlertUrgency {
-  Immediate = "Immediate",
-  Expected = "Expected",
-  Future = "Future",
-  Past = "Past",
-  Unknown = "Unknown",
-}
 
 /** An alert entry in an Atom feed */
 export interface AlertAtomEntry {
@@ -253,11 +613,12 @@ export type ATSUIdentifier = string;
 /** @format binary */
 export type BinaryFile = File;
 
-export type CenterWeatherAdvisoryCollectionGeoJson = GeoJsonFeatureCollection & {
-  features?: {
-    properties?: CenterWeatherAdvisory;
-  }[];
-};
+export type CenterWeatherAdvisoryCollectionGeoJson =
+  GeoJsonFeatureCollection & {
+    features?: {
+      properties?: CenterWeatherAdvisory;
+    }[];
+  };
 
 export type CenterWeatherAdvisoryGeoJson = GeoJsonFeature & {
   properties?: CenterWeatherAdvisory;
@@ -455,7 +816,7 @@ export interface Gridpoint {
    * The string "NOW" can also be used in place of a start/end time.
    */
   validTimes?: ISO8601Interval;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   elevation?: QuantitativeValue;
   /** @format uri */
   forecastOffice?: string;
@@ -520,7 +881,7 @@ export interface Gridpoint {
           | "water_spouts"
           | null;
         intensity: "very_light" | "light" | "moderate" | "heavy" | null;
-        /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+        /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
         visibility: QuantitativeValue;
         attributes: (
           | "damaging_wind"
@@ -659,7 +1020,7 @@ export type GridpointGeoJson = GeoJsonFeature & {
 export type GridpointJsonLd = Gridpoint;
 
 /** A multi-day forecast for a 2.5km grid square. */
-export interface GridpointForecast {
+export interface Gridpoint12HForecast {
   "@context"?: JsonLdContext;
   /** A geometry represented in Well-Known Text (WKT) format. */
   geometry?: GeometryString;
@@ -678,11 +1039,39 @@ export interface GridpointForecast {
    */
   updateTime?: string;
   /**
-   * This property is deprecated (use updateTime instead).
-   * @deprecated
+   * A time interval in ISO 8601 format. This can be one of:
+   *
+   *     1. Start and end time
+   *     2. Start time and duration
+   *     3. Duration and end time
+   * The string "NOW" can also be used in place of a start/end time.
+   */
+  validTimes?: ISO8601Interval;
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  elevation?: QuantitativeValue;
+  /** An array of forecast periods. */
+  periods?: Gridpoint12HForecastPeriod[];
+}
+
+/** An hourly forecast for a 2.5km grid square. */
+export interface GridpointHourlyForecast {
+  "@context"?: JsonLdContext;
+  /** A geometry represented in Well-Known Text (WKT) format. */
+  geometry?: GeometryString;
+  /** Denotes the units used in the textual portions of the forecast. */
+  units?: GridpointForecastUnits;
+  /** The internal generator class used to create the forecast text (used for NWS debugging). */
+  forecastGenerator?: string;
+  /**
+   * The time this forecast data was generated.
    * @format date-time
    */
-  updated?: string;
+  generatedAt?: string;
+  /**
+   * The last update time of the data this forecast was generated from.
+   * @format date-time
+   */
+  updateTime?: string;
   /**
    * A time interval in ISO 8601 format. This can be one of:
    *
@@ -692,14 +1081,14 @@ export interface GridpointForecast {
    * The string "NOW" can also be used in place of a start/end time.
    */
   validTimes?: ISO8601Interval;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   elevation?: QuantitativeValue;
   /** An array of forecast periods. */
-  periods?: GridpointForecastPeriod[];
+  periods?: GridpointHourlyForecastPeriod[];
 }
 
 /** An object containing forecast information for a specific time period (generally 12-hour or 1-hour). */
-export interface GridpointForecastPeriod {
+export interface GridpointHourlyForecastPeriod {
   /**
    * Sequential period number.
    * @min 1
@@ -735,11 +1124,11 @@ export interface GridpointForecastPeriod {
   temperatureUnit?: "F" | "C";
   /** If not null, indicates a non-diurnal temperature trend for the period (either rising temperature overnight, or falling temperature during the day) */
   temperatureTrend?: "rising" | "falling" | null;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   probabilityOfPrecipitation?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   dewpoint?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   relativeHumidity?: QuantitativeValue;
   /**
    * Wind speed for the period.
@@ -781,21 +1170,102 @@ export interface GridpointForecastPeriod {
   detailedForecast?: string;
 }
 
-/**
- * Denotes the units used in the textual portions of the forecast.
- * @default "us"
- */
-export enum GridpointForecastUnits {
-  Us = "us",
-  Si = "si",
+/** An object containing forecast information for a specific time period (generally 12-hour or 1-hour). */
+export interface Gridpoint12HForecastPeriod {
+  /**
+   * Sequential period number.
+   * @min 1
+   */
+  number?: number;
+  /**
+   * A textual identifier for the period. This value will not be present for hourly forecasts.
+   * @example "Tuesday Night"
+   */
+  name?: string;
+  /**
+   * The starting time that this forecast period is valid for.
+   * @format date-time
+   */
+  startTime?: string;
+  /**
+   * The ending time that this forecast period is valid for.
+   * @format date-time
+   */
+  endTime?: string;
+  /** Indicates whether this period is daytime or nighttime. */
+  isDaytime?: boolean;
+  /**
+   * High/low temperature for the period, depending on whether the period is day or night.
+   * This property as an integer value is deprecated. Future versions will express this value as a quantitative value object. To make use of the future standard format now, set the "forecast_temperature_qv" feature flag on the request.
+   */
+  temperature?: QuantitativeValue | number;
+  /**
+   * The unit of the temperature value (Fahrenheit or Celsius).
+   * This property is deprecated. Future versions will indicate the unit within the quantitative value object for the temperature property. To make use of the future standard format now, set the "forecast_temperature_qv" feature flag on the request.
+   * @deprecated
+   */
+  temperatureUnit?: "F" | "C";
+  /** If not null, indicates a non-diurnal temperature trend for the period (either rising temperature overnight, or falling temperature during the day) */
+  temperatureTrend?: "rising" | "falling" | null;
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  probabilityOfPrecipitation?: QuantitativeValue;
+  /**
+   * Wind speed for the period.
+   * This property as an string value is deprecated. Future versions will express this value as a quantitative value object. To make use of the future standard format now, set the "forecast_wind_speed_qv" feature flag on the request.
+   */
+  windSpeed?: QuantitativeValue | string;
+  /**
+   * Peak wind gust for the period.
+   * This property as an string value is deprecated. Future versions will express this value as a quantitative value object. To make use of the future standard format now, set the "forecast_wind_speed_qv" feature flag on the request.
+   */
+  windGust?: QuantitativeValue | string | null;
+  /** The prevailing direction of the wind for the period, using a 16-point compass. */
+  windDirection?:
+    | "N"
+    | "NNE"
+    | "NE"
+    | "ENE"
+    | "E"
+    | "ESE"
+    | "SE"
+    | "SSE"
+    | "S"
+    | "SSW"
+    | "SW"
+    | "WSW"
+    | "W"
+    | "WNW"
+    | "NW"
+    | "NNW";
+  /**
+   * A link to an icon representing the forecast summary.
+   * @deprecated
+   * @format uri
+   */
+  icon?: string;
+  /** A brief textual forecast summary for the period. */
+  shortForecast?: string;
+  /** A detailed textual forecast for the period. */
+  detailedForecast?: string;
 }
 
-export type GridpointForecastGeoJson = GeoJsonFeature & {
+export type Gridpoint12HForecastGeoJson = GeoJsonFeature & {
   /** A multi-day forecast for a 2.5km grid square. */
-  properties?: GridpointForecast;
+  properties?: Gridpoint12HForecast;
 };
 
-export type GridpointForecastJsonLd = GridpointForecast & {
+export type GridpointHourlyForecastGeoJson = GeoJsonFeature & {
+  /** An hourly forecast for a 2.5km grid square. */
+  properties?: GridpointHourlyForecast;
+};
+
+export type Gridpoint12HForecastJsonLd = Gridpoint12HForecast & {
+  "@context": JsonLdContext;
+  /** A geometry represented in Well-Known Text (WKT) format. */
+  geometry: GeometryString;
+};
+
+export type GridpointHourlyForecastJsonLd = GridpointHourlyForecast & {
   "@context": JsonLdContext;
   /** A geometry represented in Well-Known Text (WKT) format. */
   geometry: GeometryString;
@@ -820,82 +1290,18 @@ export type ISO8601Interval = string;
 
 export type JsonLdContext = any[] | object;
 
-/**
- * Land region code. These correspond to the six NWS regional headquarters:
- * * AR: Alaska Region
- * * CR: Central Region
- * * ER: Eastern Region
- * * PR: Pacific Region
- * * SR: Southern Region
- * * WR: Western Region
- */
-export enum LandRegionCode {
-  AR = "AR",
-  CR = "CR",
-  ER = "ER",
-  PR = "PR",
-  SR = "SR",
-  WR = "WR",
-}
-
-/**
- * Marine area code as defined in NWS Directive 10-302:
- * * AM: Western North Atlantic Ocean and along U.S. East Coast south of Currituck Beach Light NC following the coastline into Gulf of Mexico to Ocean Reef FL including the Caribbean
- * * AN: Western North Atlantic Ocean and along U.S. East Coast from Canadian border south to Currituck Beach Light NC
- * * GM: Gulf of Mexico and along the U.S. Gulf Coast from the Mexican border to Ocean Reef FL
- * * LC: Lake St. Clair
- * * LE: Lake Erie
- * * LH: Lake Huron
- * * LM: Lake Michigan
- * * LO: Lake Ontario
- * * LS: Lake Superior
- * * PH: Central Pacific Ocean including Hawaiian waters
- * * PK: North Pacific Ocean near Alaska and along Alaska coastline including the Bering Sea and the Gulf of Alaska
- * * PM: Western Pacific Ocean including Mariana Island waters
- * * PS: South Central Pacific Ocean including American Samoa waters
- * * PZ: Eastern North Pacific Ocean and along U.S. West Coast from Canadian border to Mexican border
- * * SL: St. Lawrence River above St. Regis
- */
-export enum MarineAreaCode {
-  AM = "AM",
-  AN = "AN",
-  GM = "GM",
-  LC = "LC",
-  LE = "LE",
-  LH = "LH",
-  LM = "LM",
-  LO = "LO",
-  LS = "LS",
-  PH = "PH",
-  PK = "PK",
-  PM = "PM",
-  PS = "PS",
-  PZ = "PZ",
-  SL = "SL",
-}
-
-/**
- * Marine region code. These are groups of marine areas combined.
- * * AL: Alaska waters (PK)
- * * AT: Atlantic Ocean (AM, AN)
- * * GL: Great Lakes (LC, LE, LH, LM, LO, LS, SL)
- * * GM: Gulf of Mexico (GM)
- * * PA: Eastern Pacific Ocean and U.S. West Coast (PZ)
- * * PI: Central and Western Pacific (PH, PM, PS)
- */
-export enum MarineRegionCode {
-  AL = "AL",
-  AT = "AT",
-  GL = "GL",
-  GM = "GM",
-  PA = "PA",
-  PI = "PI",
-}
-
 /** An object representing a decoded METAR phenomenon string. */
 export interface MetarPhenomenon {
   intensity: "light" | "heavy" | null;
-  modifier: "patches" | "blowing" | "low_drifting" | "freezing" | "shallow" | "partial" | "showers" | null;
+  modifier:
+    | "patches"
+    | "blowing"
+    | "low_drifting"
+    | "freezing"
+    | "shallow"
+    | "partial"
+    | "showers"
+    | null;
   weather:
     | "fog_mist"
     | "dust_storm"
@@ -924,193 +1330,10 @@ export interface MetarPhenomenon {
   inVicinity?: boolean;
 }
 
-export enum MetarSkyCoverage {
-  OVC = "OVC",
-  BKN = "BKN",
-  SCT = "SCT",
-  FEW = "FEW",
-  SKC = "SKC",
-  CLR = "CLR",
-  VV = "VV",
-}
-
-/** Three-letter identifier for a Center Weather Service Unit (CWSU). */
-export enum NWSCenterWeatherServiceUnitId {
-  ZAB = "ZAB",
-  ZAN = "ZAN",
-  ZAU = "ZAU",
-  ZBW = "ZBW",
-  ZDC = "ZDC",
-  ZDV = "ZDV",
-  ZFA = "ZFA",
-  ZFW = "ZFW",
-  ZHU = "ZHU",
-  ZID = "ZID",
-  ZJX = "ZJX",
-  ZKC = "ZKC",
-  ZLA = "ZLA",
-  ZLC = "ZLC",
-  ZMA = "ZMA",
-  ZME = "ZME",
-  ZMP = "ZMP",
-  ZNY = "ZNY",
-  ZOA = "ZOA",
-  ZOB = "ZOB",
-  ZSE = "ZSE",
-  ZTL = "ZTL",
-}
-
-/** Three-letter identifier for a NWS office. */
-export enum NWSForecastOfficeId {
-  AKQ = "AKQ",
-  ALY = "ALY",
-  BGM = "BGM",
-  BOX = "BOX",
-  BTV = "BTV",
-  BUF = "BUF",
-  CAE = "CAE",
-  CAR = "CAR",
-  CHS = "CHS",
-  CLE = "CLE",
-  CTP = "CTP",
-  GSP = "GSP",
-  GYX = "GYX",
-  ILM = "ILM",
-  ILN = "ILN",
-  LWX = "LWX",
-  MHX = "MHX",
-  OKX = "OKX",
-  PBZ = "PBZ",
-  PHI = "PHI",
-  RAH = "RAH",
-  RLX = "RLX",
-  RNK = "RNK",
-  ABQ = "ABQ",
-  AMA = "AMA",
-  BMX = "BMX",
-  BRO = "BRO",
-  CRP = "CRP",
-  EPZ = "EPZ",
-  EWX = "EWX",
-  FFC = "FFC",
-  FWD = "FWD",
-  HGX = "HGX",
-  HUN = "HUN",
-  JAN = "JAN",
-  JAX = "JAX",
-  KEY = "KEY",
-  LCH = "LCH",
-  LIX = "LIX",
-  LUB = "LUB",
-  LZK = "LZK",
-  MAF = "MAF",
-  MEG = "MEG",
-  MFL = "MFL",
-  MLB = "MLB",
-  MOB = "MOB",
-  MRX = "MRX",
-  OHX = "OHX",
-  OUN = "OUN",
-  SHV = "SHV",
-  SJT = "SJT",
-  SJU = "SJU",
-  TAE = "TAE",
-  TBW = "TBW",
-  TSA = "TSA",
-  ABR = "ABR",
-  APX = "APX",
-  ARX = "ARX",
-  BIS = "BIS",
-  BOU = "BOU",
-  CYS = "CYS",
-  DDC = "DDC",
-  DLH = "DLH",
-  DMX = "DMX",
-  DTX = "DTX",
-  DVN = "DVN",
-  EAX = "EAX",
-  FGF = "FGF",
-  FSD = "FSD",
-  GID = "GID",
-  GJT = "GJT",
-  GLD = "GLD",
-  GRB = "GRB",
-  GRR = "GRR",
-  ICT = "ICT",
-  ILX = "ILX",
-  IND = "IND",
-  IWX = "IWX",
-  JKL = "JKL",
-  LBF = "LBF",
-  LMK = "LMK",
-  LOT = "LOT",
-  LSX = "LSX",
-  MKX = "MKX",
-  MPX = "MPX",
-  MQT = "MQT",
-  OAX = "OAX",
-  PAH = "PAH",
-  PUB = "PUB",
-  RIW = "RIW",
-  SGF = "SGF",
-  TOP = "TOP",
-  UNR = "UNR",
-  BOI = "BOI",
-  BYZ = "BYZ",
-  EKA = "EKA",
-  FGZ = "FGZ",
-  GGW = "GGW",
-  HNX = "HNX",
-  LKN = "LKN",
-  LOX = "LOX",
-  MFR = "MFR",
-  MSO = "MSO",
-  MTR = "MTR",
-  OTX = "OTX",
-  PDT = "PDT",
-  PIH = "PIH",
-  PQR = "PQR",
-  PSR = "PSR",
-  REV = "REV",
-  SEW = "SEW",
-  SGX = "SGX",
-  SLC = "SLC",
-  STO = "STO",
-  TFX = "TFX",
-  TWC = "TWC",
-  VEF = "VEF",
-  AER = "AER",
-  AFC = "AFC",
-  AFG = "AFG",
-  AJK = "AJK",
-  ALU = "ALU",
-  GUM = "GUM",
-  HPA = "HPA",
-  HFO = "HFO",
-  PPG = "PPG",
-  STU = "STU",
-  NH1 = "NH1",
-  NH2 = "NH2",
-  ONA = "ONA",
-  ONP = "ONP",
-}
-
-/** Three-letter identifier for NWS National HQ. */
-export enum NWSNationalHQId {
-  NWS = "NWS",
-}
-
-export type NWSOfficeId = NWSForecastOfficeId | NWSRegionalHQId | NWSNationalHQId;
-
-/** Three-letter identifier for a NWS Regional HQ. */
-export enum NWSRegionalHQId {
-  ARH = "ARH",
-  CRH = "CRH",
-  ERH = "ERH",
-  PRH = "PRH",
-  SRH = "SRH",
-  WRH = "WRH",
-}
+export type NWSOfficeId =
+  | NWSForecastOfficeId
+  | NWSRegionalHQId
+  | NWSNationalHQId;
 
 /**
  * UGC identifier for a NWS forecast zone or county.
@@ -1120,17 +1343,6 @@ export enum NWSRegionalHQId {
  */
 export type NWSZoneID = string;
 
-export enum NWSZoneType {
-  Land = "land",
-  Marine = "marine",
-  Forecast = "forecast",
-  Public = "public",
-  Coastal = "coastal",
-  Offshore = "offshore",
-  Fire = "fire",
-  County = "county",
-}
-
 export interface Observation {
   "@context"?: JsonLdContext;
   /** A geometry represented in Well-Known Text (WKT) format. */
@@ -1138,7 +1350,7 @@ export interface Observation {
   /** @format uri */
   "@id"?: string;
   "@type"?: "wx:ObservationStation";
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   elevation?: QuantitativeValue;
   /** @format uri */
   station?: string;
@@ -1152,41 +1364,41 @@ export interface Observation {
    */
   icon?: string | null;
   presentWeather?: MetarPhenomenon[];
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   temperature?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   dewpoint?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   windDirection?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   windSpeed?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   windGust?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   barometricPressure?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   seaLevelPressure?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   visibility?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   maxTemperatureLast24Hours?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   minTemperatureLast24Hours?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   precipitationLastHour?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   precipitationLast3Hours?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   precipitationLast6Hours?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   relativeHumidity?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   windChill?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   heatIndex?: QuantitativeValue;
   cloudLayers?:
     | {
-        /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+        /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
         base: QuantitativeValue;
         amount: MetarSkyCoverage;
       }[]
@@ -1217,12 +1429,16 @@ export interface ObservationStation {
   /** @format uri */
   "@id"?: string;
   "@type"?: "wx:ObservationStation";
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   elevation?: QuantitativeValue;
   stationIdentifier?: string;
   name?: string;
   /** @format iana-time-zone-identifier */
   timeZone?: string;
+  /** The data provider for this station. E.g., "ASOS," "MesoWest," etc. */
+  provider?: string;
+  /** The sub-provider of for this station. E.g., "FAA," "DOT," etc. */
+  subProvider?: string;
   /**
    * A link to the NWS public forecast zone containing this station.
    * @format uri
@@ -1238,6 +1454,10 @@ export interface ObservationStation {
    * @format uri
    */
   fireWeatherZone?: string;
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  distance?: QuantitativeValue;
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  bearing?: QuantitativeValue;
 }
 
 export type ObservationStationGeoJson = GeoJsonFeature & {
@@ -1416,7 +1636,7 @@ export interface ProblemDetail {
   [key: string]: any;
 }
 
-/** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+/** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
 export interface QuantitativeValue {
   /** A measured value */
   value?: number | null;
@@ -1441,9 +1661,9 @@ export type RegionCode = LandRegionCode | MarineRegionCode;
 export interface RelativeLocation {
   city?: string;
   state?: string;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   distance?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slighly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
   bearing?: QuantitativeValue;
 }
 
@@ -1482,68 +1702,6 @@ export type SigmetGeoJson = GeoJsonFeature & {
 };
 
 export type SigmetSequenceNumber = string;
-
-export enum StateTerritoryCode {
-  AL = "AL",
-  AK = "AK",
-  AS = "AS",
-  AR = "AR",
-  AZ = "AZ",
-  CA = "CA",
-  CO = "CO",
-  CT = "CT",
-  DE = "DE",
-  DC = "DC",
-  FL = "FL",
-  GA = "GA",
-  GU = "GU",
-  HI = "HI",
-  ID = "ID",
-  IL = "IL",
-  IN = "IN",
-  IA = "IA",
-  KS = "KS",
-  KY = "KY",
-  LA = "LA",
-  ME = "ME",
-  MD = "MD",
-  MA = "MA",
-  MI = "MI",
-  MN = "MN",
-  MS = "MS",
-  MO = "MO",
-  MT = "MT",
-  NE = "NE",
-  NV = "NV",
-  NH = "NH",
-  NJ = "NJ",
-  NM = "NM",
-  NY = "NY",
-  NC = "NC",
-  ND = "ND",
-  OH = "OH",
-  OK = "OK",
-  OR = "OR",
-  PA = "PA",
-  PR = "PR",
-  RI = "RI",
-  SC = "SC",
-  SD = "SD",
-  TN = "TN",
-  TX = "TX",
-  UT = "UT",
-  VT = "VT",
-  VI = "VI",
-  VA = "VA",
-  WA = "WA",
-  WV = "WV",
-  WI = "WI",
-  WY = "WY",
-  MP = "MP",
-  PW = "PW",
-  FM = "FM",
-  MH = "MH",
-}
 
 export interface TextProduct {
   "@context"?: JsonLdContext;
@@ -1613,7 +1771,13 @@ export interface Zone {
   /** @format date-time */
   expirationDate?: string;
   state?: StateTerritoryCode | "" | null;
+  /** @format uri */
+  forecastOffice?: string;
+  gridIdentifier?: string;
+  awipsLocationIdentifier?: string;
+  /** @deprecated */
   cwa?: NWSForecastOfficeId[];
+  /** @deprecated */
   forecastOffices?: string[];
   timeZone?: string[];
   observationStations?: string[];
