@@ -41,15 +41,18 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
+          # Create branch name with current date and time
+          BRANCH_NAME="update-weather-api-spec-$(date +'%Y%m%d-%H%M%S')"
+          
           # Create and switch to new branch
-          git checkout -b update-weather-api-spec
+          git checkout -b $BRANCH_NAME
           
           # Add and commit changes
           git add src/weather-api/weather-gov-api.ts
           git commit -m "Update weather.gov API specification"
           
           # Push branch
-          git push origin update-weather-api-spec
+          git push origin $BRANCH_NAME
           
           # Create pull request using GitHub CLI
           gh pr create \
@@ -63,4 +66,4 @@ jobs:
 
           Please review the changes before merging." \
             --base main \
-            --head update-weather-api-spec
+            --head $BRANCH_NAME
