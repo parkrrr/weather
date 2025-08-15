@@ -1,0 +1,66 @@
+name: Update Weather API Spec
+
+on:
+  schedule:
+    # Run monthly on the 1st at 6 AM UTC
+    - cron: '0 6 1 * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-spec:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: actions/setup-node@v4
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Generate API spec
+        run: npm run generate
+        
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD -- src/weather-api/weather-gov-api.ts; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Configure git
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Create and switch to new branch
+          git checkout -b update-weather-api-spec
+          
+          # Add and commit changes
+          git add src/weather-api/weather-gov-api.ts
+          git commit -m "Update weather.gov API specification"
+          
+          # Push branch
+          git push origin update-weather-api-spec
+          
+          # Create pull request using GitHub CLI
+          gh pr create \
+            --title "Update weather.gov API specification" \
+            --body "Automated update of the weather.gov API specification.
+
+          This PR was created automatically by the GitHub Actions workflow.
+
+          Changes detected in:
+          - \`src/weather-api/weather-gov-api.ts\`
+
+          Please review the changes before merging." \
+            --base main \
+            --head update-weather-api-spec
