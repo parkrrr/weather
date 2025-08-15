@@ -6,7 +6,7 @@
 		"dev": "vite",
 		"build": "tsc --noEmit && vite build",
 		"preview": "vite preview",
-		"generate": "npx -y swagger-typescript-api --no-client -p https://api.weather.gov/openapi.json -o ./src/spec -n weather-gov-api.ts",
+		"generate": "npx -y swagger-typescript-api generate --no-client -p https://api.weather.gov/openapi.json -o ./src/weather-api -n weather-gov-api.ts",
 		"test": "playwright test"
 	},
 	"dependencies": {
