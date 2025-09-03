@@ -2,17 +2,30 @@
 
 .button {
     cursor: pointer;
-    width: 24px;
+    box-sizing: border-box;
+    height: 32px;
     fill: $highlight;
     margin: 2px;
     border-radius: 5px;
     background-color: $background-dark;
     color: $secondary;
-    font-weight: 500;
+    display: flex;
+    align-items: center;
     padding: 5px;
-    padding-top: 7px;
+}
+
+.buttonIcon {
+    padding-top: 2px;
+    align-items: center;
+}
+
+.buttonLabel {
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding-right: 2px;
+    padding-bottom: 2px;
 }
 
 .location {
-	align-items: center;
+    align-items: center;
 }
