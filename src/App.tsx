@@ -48,13 +48,6 @@ export function App() {
 		getObservations(airport, refDate)
 			.then(({observations, isUsingMocks}) => {
 				setIsUsingMocks(isUsingMocks);
-
-				if (observations.length == 0) {
-					setErrorMessage(`No observations from ${airport}`);
-					return;
-				}
-
-
 				setObservations(observations);
 			})
 			.catch((err: Error) => setErrorMessage(err.message))
@@ -106,6 +99,8 @@ export function App() {
 		content = <ErrorMessage message="No airport selected" onAirportChange={(a) => changeAirport(a)} />
 	} else if (view == null) {
 		content = <ErrorMessage message="Invalid view selected" onAirportChange={(a) => changeAirport(a)} />
+	} else if (observations.length == 0) {
+		content = <ErrorMessage message={`No observations from ${airport}`} onAirportChange={(a) => changeAirport(a)} />
 	} else {
 		content = (
 			<div className={style.app}>
