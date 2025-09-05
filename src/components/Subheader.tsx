@@ -17,7 +17,7 @@ export function Subheader(props: { stationId: string, latestObservation: Observa
     if (!props.latestObservation) {
         return (
             <div className={style.subtitleItem}>
-                <Location onStationIdChanged={props.onStationIdChanged} />
+                <Location stationId={props.stationId} onStationIdChanged={props.onStationIdChanged} />
                 <h2 className={style.subtitle}>{props.stationId}</h2>
             </div>
         )
@@ -27,8 +27,8 @@ export function Subheader(props: { stationId: string, latestObservation: Observa
 
         return (
             <div className={style.subtitleItem}>
-                <Location onStationIdChanged={props.onStationIdChanged} />
-                <h2 className={style.subtitle}>{props.stationId} at {readableTimeStamp}</h2>
+                <Location stationId={props.stationId} onStationIdChanged={props.onStationIdChanged} />
+                <h2 className={style.subtitle}> at {readableTimeStamp}</h2>
             </div>
         )
     };
