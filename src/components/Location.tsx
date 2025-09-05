@@ -89,7 +89,7 @@ export function Location(props: { stationId: string, onStationIdChanged: (statio
             <div className={style.buttonLabel}>
                 {props.stationId}
             </div>
-        </div>  
+        </div>
     </div>);
 
     if (useGeolocation) {
