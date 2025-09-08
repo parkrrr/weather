@@ -18,7 +18,6 @@ export function Subheader(props: { stationId: string, latestObservation: Observa
         return (
             <div className={style.subtitleItem}>
                 <Location stationId={props.stationId} onStationIdChanged={props.onStationIdChanged} />
-                <h2 className={style.subtitle}>{props.stationId}</h2>
             </div>
         )
     }
