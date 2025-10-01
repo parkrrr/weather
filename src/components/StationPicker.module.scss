@@ -1,4 +1,4 @@
-@import "../style.scss";
+@use "../style.scss";
 
 .menu {
     position: fixed;
@@ -6,7 +6,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    background-color: $background-dark;
+    background-color: style.$background-dark;
     border-radius: 8px;
     padding: 10px;
     max-width: 90vw;
@@ -14,12 +14,12 @@
 }
 
 .menu li {
-    border: 1px solid $primary;
+    border: 1px solid style.$primary;
     padding: 10px 20px;
     margin: 5px 0;
     text-align: center;
     cursor: pointer;
-    background-color: $background-dark;
-    color: $secondary;
-    list-style: none
+    background-color: style.$background-dark;
+    color: style.$secondary;
+    list-style: none;
 }

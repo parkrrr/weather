@@ -1,22 +1,22 @@
 @use "sass:math";
-@import "../style.scss";
+@use "../style.scss";
 
 .chart {
 	max-height: 80vh;
 }
 
 .line {
-	stroke: $primary;
+	stroke: style.$primary;
 }
 
 .windpoint {
 	stroke-width: 0.1px;
-	stroke: $highlight;
-	fill: $highlight;
+	stroke: style.$highlight;
+	fill: style.$highlight;
 }
 
 .point {
-	stroke: $primary;
+	stroke: style.$primary;
 }
 
 .qc-fail {
@@ -24,22 +24,22 @@
 }
 
 .gridline {
-	stroke: $secondary-dark;
+	stroke: style.$secondary-dark;
 	stroke-width: 0.5px;
 }
 
 .label-y {
 	display: flex;
-	fill: $secondary;
-	color: $secondary;
+	fill: style.$secondary;
+	color: style.$secondary;
 	font-size: 0.3rem;
 	line-height: 1;
 }
 
 .label-x {
 	display: flex;
-	fill: $secondary;
-	color: $secondary;
+	fill: style.$secondary;
+	color: style.$secondary;
 	font-size: 0.3rem;
 	position: relative;
 	justify-content: flex-end;

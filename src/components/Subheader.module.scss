@@ -1,8 +1,8 @@
-@import "../style.scss";
+@use "../style.scss";
 
 .subtitle {
 	font-size: 1.1rem;
-	color: $secondary;
+	color: style.$secondary;
 	font-weight: 500;
 	margin: 5px;
 	padding-bottom: 2px;

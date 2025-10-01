@@ -1,8 +1,8 @@
-@import "../style.scss";
+@use "../style.scss";
 
 .title {
     font-size: 1.3rem;
-    color: $primary;
+    color: style.$primary;
     font-weight: 700;
     margin: 5px;
 }

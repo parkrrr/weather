@@ -1,14 +1,14 @@
-@import "../style.scss";
+@use "../style.scss";
 
 .error {
 	display: flex;
 	min-height: 128px;
 	min-width: 128px;
-	background: url('@/assets/error.png') 50% 50% no-repeat $background-color;
+	background: url('@/assets/error.png') 50% 50% no-repeat style.$background-color;
 }
 
 .errorMessage {
 	text-align: center;
-	color: $primary;
+	color: style.$primary;
 	font-weight: 700;
 }

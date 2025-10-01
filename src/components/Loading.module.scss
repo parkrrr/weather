@@ -1,9 +1,9 @@
-@import "../style.scss";
+@use "../style.scss";
 
 .loading {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	background: url('@/assets/loading.png') 50% 50% no-repeat $background-color;
+	background: url('@/assets/loading.png') 50% 50% no-repeat style.$background-color;
 }

@@ -1,14 +1,14 @@
-@import "../style.scss";
+@use "../style.scss";
 
 .button {
     cursor: pointer;
     box-sizing: border-box;
     height: 32px;
-    fill: $highlight;
+    fill: style.$highlight;
     margin: 2px;
     border-radius: 5px;
-    background-color: $background-dark;
-    color: $secondary;
+    background-color: style.$background-dark;
+    color: style.$secondary;
     display: flex;
     align-items: center;
     padding: 5px;
