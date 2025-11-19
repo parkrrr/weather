@@ -21,7 +21,7 @@ Not all stations report the same data. Some data points may not be available dep
 Observations that have failed quality control will be rendered with a darker point. Initial observations that have not undergone quality control will not render a point, but will still have a connecting line.
 
 ## Data
-This application uses data provided by the [National Weather Service](https://www.weather.gov/documentation/services-web-api). As a result, data is limited to North American airports.
+This application uses data provided by the [National Weather Service](https://www.weather.gov/documentation/services-web-api). As a result, data is limited to areas monitored by the United States government.
 
 The types for the NWS API can be re-generated using `npm run generate`.
 
