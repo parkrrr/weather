@@ -86,7 +86,12 @@ export class HumidityModel extends ObservationViewModel<number> {
 export class WindModel extends ObservationViewModel<[number, number, number?]> {
     constructor(timestamp: string, windSpeed: QuantitativeValue, windDirection: QuantitativeValue, windGust: QuantitativeValue) {
         super(timestamp, windSpeed);
-        this.value = [kilometersToMiles(windSpeed.value!), windDirection.value!, windGust.value ?? undefined];
+    
+        const speed = kilometersToMiles(windSpeed.value!);
+        const direction = windDirection.value!;
+        const gust = windGust.value !== null ? kilometersToMiles(windGust.value!) : undefined;
+
+        this.value = [speed, direction, gust];
     }
 
     toDataPoint() {
