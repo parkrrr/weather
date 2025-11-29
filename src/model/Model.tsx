@@ -26,7 +26,8 @@ export function degreesToCardinalDirection(degrees: number) {
 }
 
 // All possible types that a view model might take
-export type ViewModelGenericTypes = number | [number, number];
+// Basically single values, or complex wind values (speed, direction, gust)
+export type ViewModelGenericTypes = number | [number, number, number?];
 
 export abstract class ObservationViewModel<T> {
     value: T;
@@ -40,10 +41,11 @@ export abstract class ObservationViewModel<T> {
 
     abstract formatValue(): string;
 
-    toDataPoint(): { x: Date, y: number } {
+    toDataPoint(): { x: Date, y: number, y2: number | undefined } {
         return {
             x: this.timestamp,
-            y: this.value as number
+            y: this.value as number,
+            y2: undefined
         }
     };
 }
@@ -81,16 +83,17 @@ export class HumidityModel extends ObservationViewModel<number> {
     }
 }
 
-export class WindModel extends ObservationViewModel<[number, number]> {
-    constructor(timestamp: string, windSpeed: QuantitativeValue, windDirection: QuantitativeValue) {
+export class WindModel extends ObservationViewModel<[number, number, number?]> {
+    constructor(timestamp: string, windSpeed: QuantitativeValue, windDirection: QuantitativeValue, windGust: QuantitativeValue) {
         super(timestamp, windSpeed);
-        this.value = [kilometersToMiles(windSpeed.value!), windDirection.value!];
+        this.value = [kilometersToMiles(windSpeed.value!), windDirection.value!, windGust.value ?? undefined];
     }
 
     toDataPoint() {
         return {
             x: this.timestamp,
-            y: this.value[0]
+            y: this.value[0],
+            y2: this.value[2] ?? undefined
         }
     };
 

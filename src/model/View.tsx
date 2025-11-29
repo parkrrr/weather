@@ -53,7 +53,7 @@ const dewpointView = new View("Dew Point", null,
 
 const windView = new View("Wind", null,
     (v) => v.windSpeed?.value == null,
-    (v) => new WindModel(v.timestamp!, v.windSpeed!, v.windDirection!),
+    (v) => new WindModel(v.timestamp!, v.windSpeed!, v.windDirection!, v.windGust!),
     (v) => v.toFixed(1));
 
 const getViewByName = (name: string | null): View | null => {
