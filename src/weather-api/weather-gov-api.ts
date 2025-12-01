@@ -226,6 +226,8 @@ export enum NWSForecastOfficeId {
   HPA = "HPA",
   HFO = "HFO",
   PPG = "PPG",
+  PQE = "PQE",
+  PQW = "PQW",
   STU = "STU",
   NH1 = "NH1",
   NH2 = "NH2",
@@ -1124,11 +1126,11 @@ export interface GridpointHourlyForecastPeriod {
   temperatureUnit?: "F" | "C";
   /** If not null, indicates a non-diurnal temperature trend for the period (either rising temperature overnight, or falling temperature during the day) */
   temperatureTrend?: "rising" | "falling" | null;
-  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** Probability of precipitation for the period. */
   probabilityOfPrecipitation?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** Dewpoint. Only provided in hourly forecasts. */
   dewpoint?: QuantitativeValue;
-  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** Relative humidity. Only provided in hourly forecasts. */
   relativeHumidity?: QuantitativeValue;
   /**
    * Wind speed for the period.
@@ -1207,7 +1209,7 @@ export interface Gridpoint12HForecastPeriod {
   temperatureUnit?: "F" | "C";
   /** If not null, indicates a non-diurnal temperature trend for the period (either rising temperature overnight, or falling temperature during the day) */
   temperatureTrend?: "rising" | "falling" | null;
-  /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
+  /** Probability of precipitation for the period. */
   probabilityOfPrecipitation?: QuantitativeValue;
   /**
    * Wind speed for the period.
@@ -1354,6 +1356,8 @@ export interface Observation {
   elevation?: QuantitativeValue;
   /** @format uri */
   station?: string;
+  stationId?: string;
+  stationName?: string;
   /** @format date-time */
   timestamp?: string;
   rawMessage?: string;
@@ -1420,6 +1424,8 @@ export type ObservationCollectionGeoJson = GeoJsonFeatureCollection & {
 export interface ObservationCollectionJsonLd {
   "@context"?: JsonLdContext;
   "@graph"?: Observation[];
+  /** Links for retrieving more data from paged data sets */
+  pagination?: PaginationInfo;
 }
 
 export interface ObservationStation {
