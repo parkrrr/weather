@@ -1,6 +1,7 @@
 name: Update Release Information
 
 permissions:
+  contents: write
   actions: write
 
 on:
