@@ -1,0 +1,32 @@
+name: Set release tag
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  tag:
+    needs: test
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create and push tag
+        run: |
+          NEW_VERSION=$((VERSION + 1))
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "v${NEW_VERSION}"
+          git push origin "v${NEW_VERSION}"
+        env:
+          VERSION: ${{ vars.VERSION }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update VERSION variable
+        run: |
+          NEW_VERSION=$((VERSION + 1))
+          gh variable set VERSION --body "${NEW_VERSION}"
+        env:
+          VERSION: ${{ vars.VERSION }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
