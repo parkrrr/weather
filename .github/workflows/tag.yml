@@ -28,8 +28,6 @@ jobs:
       - name: Update VERSION variable
         run: |
           NEW_VERSION=$((VERSION + 1))
-          gh variable set VERSION --body "${NEW_VERSION}" --environment github-pages
+          gh variable set VERSION --body "${NEW_VERSION}" --env github-pages
         env:
           VERSION: ${{ vars.VERSION }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
