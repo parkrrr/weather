@@ -3,6 +3,7 @@ import { View } from '../model/View';
 import style from './Chart.module.scss'
 import React from 'preact/compat';
 import { ErrorMessage } from './ErrorMessage';
+import { VNode } from 'preact';
 
 export function Chart(props: { view: View, observations: ObservationViewModel<ViewModelGenericTypes>[] }) {
   if (props.observations.length == 0) {
@@ -19,7 +20,7 @@ export function Chart(props: { view: View, observations: ObservationViewModel<Vi
 
   // find the minimum and maximum value for the data being shown
   let minimumValue = Math.min(...props.observations.map(o => o.toDataPoint().y));
-  let maximumValue = Math.max(...props.observations.map(o => o.toDataPoint().y));
+  let maximumValue = Math.max(...props.observations.map(o => Math.max(o.toDataPoint().y, o.toDataPoint().y2 ?? 0)));
 
   // the reference value allows a specific value to always be visible
   // this is used for the pressure view to always show 29.92 to maintain the scale
@@ -33,7 +34,7 @@ export function Chart(props: { view: View, observations: ObservationViewModel<Vi
   const minimumTimestamp = Math.min(...props.observations.map(o => o.toDataPoint().x.getTime()));
   const maximumTimestamp = Math.max(...props.observations.map(o => o.toDataPoint().x.getTime()));
 
-  // generate evenly-spaced values between two values
+  // generate evenly-spaced values between two values 
   // this is used to generate scale labels
   function getRange(minimum: number, maximum: number, count: number) {
     const spacing = (maximum - minimum) / (count - 1);
@@ -125,11 +126,22 @@ export function Chart(props: { view: View, observations: ObservationViewModel<Vi
         {points.map((p,i) => {
           // for now this indicates we are displaying wind data
           if (p.hasAdditionalValue) {
-            // Don't render a point if the wind is calm
+
+            let gustPoint: VNode | string | null | undefined = null;
+            if (p.value[2] != null) {
+              gustPoint = <circle cx={p.x} cy={p.value[2]} r={pointSize} className={style.point} /> 
+            }
+
+            // Don't render a point if the wind is calm (but do render a gust if there is data)
             if (p.value[0] == 0 && p.value[1] == 0) {
+              if (gustPoint) {
+                return gustPoint;
+              }
+
               return null;
             }
 
+            // draw a triangle indicating wind direction
             const ref = { x: p.x, y: p.y };
             const p1 = { x: p.x, y: p.y - (trianglePointiness * triangleSize) };
             const p2 = { x: p.x + triangleSize, y: p.y + triangleSize };
@@ -138,7 +150,17 @@ export function Chart(props: { view: View, observations: ObservationViewModel<Vi
             const rotatedPoints = [ref, p1, p2, p3, p1].map(r => rotatePoint(ref, r, p.value[1]))
             const pointCommands = rotatedPoints.map(p => `${p.x} ${p.y}`).join(',');
 
-            return <polygon key={i} className={style.windpoint} points={pointCommands} />
+            const content = <polygon key={i} className={style.windpoint} points={pointCommands} />
+
+            if (gustPoint) {
+              return (<>
+                {content}
+                {gustPoint}
+              </>
+            );
+            }
+
+            return content;
           }
 
           switch (p.qc) {
