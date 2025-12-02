@@ -3,6 +3,7 @@ name: Update Release Information
 permissions:
   contents: write
   actions: write
+  pages: write
 
 on:
   workflow_dispatch:
