@@ -31,3 +31,5 @@ jobs:
           gh variable set VERSION --body "${NEW_VERSION}" --env github-pages
         env:
           VERSION: ${{ vars.VERSION }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
