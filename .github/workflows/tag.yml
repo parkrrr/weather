@@ -24,12 +24,11 @@ jobs:
           git push origin "v${NEW_VERSION}"
         env:
           VERSION: ${{ vars.VERSION }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update VERSION variable
         run: |
           NEW_VERSION=$((VERSION + 1))
-          gh variable set VERSION --body "${NEW_VERSION}"
+          gh variable set VERSION --body "${NEW_VERSION}" --environment github-pages
         env:
           VERSION: ${{ vars.VERSION }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
