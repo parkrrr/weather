@@ -6,7 +6,6 @@ on:
 
 jobs:
   tag:
-    needs: test
     environment:
       name: github-pages
     runs-on: ubuntu-latest
