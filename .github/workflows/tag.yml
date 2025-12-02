@@ -1,4 +1,4 @@
-name: Set release tag
+name: Update Release Information
 
 on:
   workflow_dispatch:
@@ -10,6 +10,7 @@ jobs:
       name: github-pages
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - name: Create and push tag
         run: |
           NEW_VERSION=$((VERSION + 1))
