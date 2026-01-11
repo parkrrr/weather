@@ -114,9 +114,7 @@ export function Chart(props: { view: View, observations: ObservationViewModel<Vi
       <g id="labels">
         {yAxisLabels.map((y, i) => <text key={i} x={0} y={y} className={style['label-y']}>{valueFormatter(gridLinesRange[i])}</text>)}
         {xAxisLabels.map((x, i) =>
-          <foreignObject key={i} x={x - 1} y={101} style="overflow: visible;">
-            <span className={style['label-x']}>{dateFormatter.format(dateLinesRange[i])}</span>
-          </foreignObject>
+          <text key={i} x={x+5} y={108} className={style['label-x']} text-anchor="end" transform={`rotate(-45 ${x} 108)`}>{dateFormatter.format(dateLinesRange[i])}</text>
         )}
       </g>
       <g id="datapoints" className={style.line}>

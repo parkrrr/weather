@@ -37,13 +37,7 @@
 }
 
 .label-x {
-	display: flex;
 	fill: style.$secondary;
 	color: style.$secondary;
 	font-size: 0.3rem;
-	position: relative;
-	justify-content: flex-end;
-	transform-origin: 100% 0;
-	transform: translate(-100%) rotate(-45deg);
-	white-space: nowrap;
 }
