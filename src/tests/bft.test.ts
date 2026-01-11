@@ -27,7 +27,7 @@ test('Render Chart', async ({ page, browserName }) => {
   expect(gridLineCount).toBeGreaterThanOrEqual(15);
 
   // does it have labels?
-  const labelCount = await page.locator('#labels foreignObject span').count();
+  const labelCount = await page.locator('#labels text').count();
   expect(labelCount).toBeGreaterThanOrEqual(10);
 
   const dataPoints = await page.locator('#datapoints path').getAttribute('d');
