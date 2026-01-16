@@ -30,7 +30,7 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: /infrastructure/preview-storage.bicep
           failOnStdErr: false
-          scope: resourceGroup
+          scope: resourcegroup
 
   deploy:
     needs: setup
