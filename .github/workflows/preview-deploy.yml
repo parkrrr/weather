@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: azure
-      url: ${{ steps.setup.outputs.primaryEndpoint }}
+      url: ${{ steps.deploy.outputs.primaryEndpoint }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -46,7 +46,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-              az storage blob upload-batch --account-name ${{ steps.setup.outputs.storageAccountName }}  --auth-mode key -d '$web' -s dist/weather/
+              az storage blob upload-batch --account-name ${{ steps.deploy.outputs.storageAccountName }}  --auth-mode key -d '$web' -s dist/weather/
 
       - name: Logout from Azure
         run: |
