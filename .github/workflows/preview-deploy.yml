@@ -47,7 +47,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-              az storage blob upload-batch --account-name ${{ steps.deploy.outputs.storageAccountName }}  --auth-mode key -d '$web' -s dist/weather/
+              az storage blob upload-batch --account-name ${{ steps.deploy.outputs.storageAccountName }}  --auth-mode key -d '$web' -s dist/
 
       - name: Enable static website hosting
         uses: azure/CLI@v1
