@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: azure
-      url: ${{ steps.deploy.outputs.primaryEndpoint }}
+      url: ${{ steps.get-url.outputs.url }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -56,10 +56,12 @@ jobs:
               az storage blob service-properties update --account-name ${{ steps.deploy.outputs.storageAccountName }} --static-website --404-document index.html --index-document index.html
 
       - name: Get static website endpoint
+        id: get-url
         uses: azure/CLI@v1
         with:
           inlineScript: | 
-              az storage account show -n ${{ steps.deploy.outputs.storageAccountName }} -g ${{ secrets.AZURE_RG }} --query "primaryEndpoints.web" --output tsv
+              url=$(az storage account show -n ${{ steps.deploy.outputs.storageAccountName }} -g ${{ secrets.AZURE_RG }} --query "primaryEndpoints.web" --output tsv)
+              echo "url=$url" >> $GITHUB_OUTPUT
 
       - name: Logout from Azure
         run: |
