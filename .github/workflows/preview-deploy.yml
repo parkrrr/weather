@@ -1,7 +1,6 @@
 name: Deploy Preview Environment
 
 on:
-  workflow_dispatch:
   pull_request:
     types: [labeled]
     branches:
@@ -21,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          ref: ${{ github.event.pull_request.head.ref }}
       - uses: actions/setup-node@v6
 
       - name: Login to Azure
@@ -35,6 +34,7 @@ jobs:
         id: deploy
         uses: azure/arm-deploy@v1
         with:
+          issueId: ${{ github.event.issue.number }}
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./infrastructure/preview-storage.bicep
