@@ -13,6 +13,7 @@ import style from './App.module.scss';
 import { Scale } from './components/Scale';
 import { VNode } from 'preact';
 import { getObservations } from './weather-api/getObservations';
+import { Theme } from './components/ThemeSelector';
 
 export function App() {
 	const [airport, setAirport] = useState<string | null>(null);
@@ -23,6 +24,34 @@ export function App() {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 	const [isUsingMocks, setIsUsingMocks] = useState<boolean>(false);
+	const [theme, setTheme] = useState<string>(() => {
+		const savedTheme = localStorage.getItem('theme');
+		if (savedTheme) {
+			return savedTheme;
+		}
+		// Auto-detect system preference
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		return prefersDark ? 'dark' : 'light';
+	});
+
+	// Apply theme to document and save to localStorage
+	useEffect(() => {
+		document.documentElement.setAttribute('data-theme', theme);
+		localStorage.setItem('theme', theme);
+	}, [theme]);
+
+	// Listen for system theme changes (only if user hasn't set a manual preference)
+	useEffect(() => {
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		const handleChange = (e: MediaQueryListEvent) => {
+			if (!localStorage.getItem('theme')) {
+				setTheme(e.matches ? 'dark' : 'light');
+			}
+		};
+		
+		mediaQuery.addEventListener('change', handleChange);
+		return () => mediaQuery.removeEventListener('change', handleChange);
+	}, []);
 
 	if (airport == null && window.location.search != '') {
 		const params = new URLSearchParams(window.location.search);
@@ -110,6 +139,7 @@ export function App() {
 				<Chart view={view} observations={viewModels} />
 				<Navigation initialView={view} onChange={(v) => setView(v)} />
 				<Scale initialScale={scale} onChange={(s) => setScale(s)} />
+				<Theme initialTheme={theme} onChange={(t) => setTheme(t)} />
 			</div>
 		);
 	}
