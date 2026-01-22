@@ -23,6 +23,12 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
       - uses: actions/setup-node@v6
 
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build
+        run: npm run build
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -40,12 +46,6 @@ jobs:
           parameters: issueId=${{ github.event.pull_request.number }}
           failOnStdErr: false
           scope: resourcegroup
-
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Build
-        run: npm run build
 
       - name: Upload to preview storage
         uses: azure/CLI@v1
