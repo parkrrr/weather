@@ -6,6 +6,9 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
   location: location
   kind: 'StorageV2'
+  tags: {
+    prNumber: issueId
+  }
   sku: {
     name: 'Standard_LRS'
   }
