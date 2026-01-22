@@ -1,0 +1,43 @@
+name: Teardown Preview Environment
+
+on:
+  pull_request:
+    types: [closed, unlabeled]
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  teardown:
+    runs-on: ubuntu-latest
+    if: |
+      github.event.action == 'closed' || 
+      (github.event.action == 'unlabeled' && github.event.label.name == 'preview')
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      
+      - name: Find and delete storage account
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            account=$(az storage account list --resource-group ${{ secrets.AZURE_RG }} \
+              --query "[?tags.prNumber=='${{ github.event.pull_request.number }}'].name" -o tsv)
+            
+            if [ -n "$account" ]; then
+              echo "Deleting storage account: $account"
+              az storage account delete -n "$account" -g ${{ secrets.AZURE_RG }} --yes
+            else
+              echo "No storage account found for PR #${{ github.event.pull_request.number }}"
+            fi
+
+      - name: Logout from Azure
+        run: az logout
+        if: always()
