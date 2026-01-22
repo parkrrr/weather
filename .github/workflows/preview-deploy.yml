@@ -18,6 +18,8 @@ jobs:
       url: ${{ steps.get-url.outputs.url }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
       - uses: actions/setup-node@v6
 
       - name: Login to Azure
