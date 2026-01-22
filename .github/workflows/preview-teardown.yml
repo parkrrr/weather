@@ -13,6 +13,8 @@ permissions:
 jobs:
   teardown:
     runs-on: ubuntu-latest
+    environment:
+      name: azure
     if: |
       github.event.action == 'closed' || 
       (github.event.action == 'unlabeled' && github.event.label.name == 'preview')
