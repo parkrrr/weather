@@ -34,7 +34,7 @@ jobs:
         id: deploy
         uses: azure/arm-deploy@v1
         with:
-          issueId: ${{ github.event.issue.number }}
+          issueId: ${{ github.event.pull_request.number }}
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./infrastructure/preview-storage.bicep
