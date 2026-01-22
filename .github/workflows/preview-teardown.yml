@@ -70,7 +70,6 @@ jobs:
               });
             }
 
-      - name: 
       - name: Logout from Azure
         run: az logout
         if: always()
