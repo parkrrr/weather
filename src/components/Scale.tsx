@@ -2,15 +2,15 @@ import React from 'preact/compat';
 import { useState } from "preact/hooks";
 import style from './Navigation.module.scss';
 
-export function Scale(props: { initialScale: string, onChange: (scale: string) => void }) {
+export function Scale(props: { initialScale: number, onChange: (scale: number) => void }) {
     const [activeScale, setActiveScale] = useState(props.initialScale);
 
-    const setScale = (scale: string) => {
+    const setScale = (scale: number) => {
         setActiveScale(scale);
         props.onChange(scale);
     }
 
-    const scales = ['1', '3', '5'];
+    const scales = [0.5, 1, 3, 5];
 
     const navItems = scales.map((scale, i) => {
         return (<div key={i} className={`${style.view} ${activeScale == scale ? style.active : ''}`} onClick={() => setScale(scale)}>{scale} day</div>);
