@@ -19,7 +19,7 @@ export function App() {
 	const [observations, setObservations] = useState<Observation[]>([]);
 	const [viewModels, setViewModels] = useState<ObservationViewModel<ViewModelGenericTypes>[]>([]);
 	const [view, setView] = useState<View | null>(getViewByName(localStorage.getItem('view') ?? 'Pressure'));
-	const [scale, setScale] = useState<string>(localStorage.getItem('scale') ?? '3');
+	const [scale, setScale] = useState<number>(Number(localStorage.getItem('scale') ?? 3));
 	const [loading, setLoading] = useState<boolean>(true);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 	const [isUsingMocks, setIsUsingMocks] = useState<boolean>(false);
@@ -42,8 +42,9 @@ export function App() {
 
 		setLoading(true);
 
-		const refDate = new Date();
-		refDate.setDate(refDate.getDate() - parseInt(scale));
+		const now = Date.now();
+		const hoursDiff = scale * 24;
+		const refDate = new Date(now - hoursDiff * 60 * 60 * 1000);
 
 		getObservations(airport, refDate)
 			.then(({observations, isUsingMocks}) => {
