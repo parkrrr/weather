@@ -61,7 +61,7 @@ jobs:
         with:
           inlineScript: | 
               url=$(az storage account show -n ${{ steps.deploy.outputs.storageAccountName }} -g ${{ secrets.AZURE_RG }} --query "primaryEndpoints.web" --output tsv)
-              echo "url=$url/weather" >> $GITHUB_OUTPUT
+              echo "url=${url%/}/weather" >> $GITHUB_OUTPUT
 
       - name: Logout from Azure
         run: |
