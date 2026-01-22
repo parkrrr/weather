@@ -8,14 +8,14 @@
 .view {
     cursor: pointer;
     border-radius: 5px;
-    background-color: style.$background-dark;
-    color: style.$secondary;
+    background-color: var(--background-dark);
+    color: var(--secondary);
     font-weight: 500;
     padding: 5px;
     margin: 2px;
 }
 
 .active {
-    background-color: style.$primary;
-    color: style.$background-dark;
+    background-color: var(--primary);
+    color: var(--background-dark);
 }

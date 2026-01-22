@@ -4,11 +4,11 @@
 	display: flex;
 	min-height: 128px;
 	min-width: 128px;
-	background: url('@/assets/error.png') 50% 50% no-repeat style.$background-color;
+	background: url('@/assets/error.png') 50% 50% no-repeat var(--background-color);
 }
 
 .errorMessage {
 	text-align: center;
-	color: style.$primary;
+	color: var(--primary);
 	font-weight: 700;
 }

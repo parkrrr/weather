@@ -6,17 +6,17 @@
 }
 
 .line {
-	stroke: style.$primary;
+	stroke: var(--primary);
 }
 
 .windpoint {
 	stroke-width: 0.1px;
-	stroke: style.$highlight;
-	fill: style.$highlight;
+	stroke: var(--highlight);
+	fill: var(--highlight);
 }
 
 .point {
-	stroke: style.$primary;
+	stroke: var(--primary);
 }
 
 .qc-fail {
@@ -24,20 +24,20 @@
 }
 
 .gridline {
-	stroke: style.$secondary-dark;
+	stroke: var(--secondary-dark);
 	stroke-width: 0.5px;
 }
 
 .label-y {
 	display: flex;
-	fill: style.$secondary;
-	color: style.$secondary;
+	fill: var(--secondary);
+	color: var(--secondary);
 	font-size: 0.3rem;
 	line-height: 1;
 }
 
 .label-x {
-	fill: style.$secondary;
-	color: style.$secondary;
+	fill: var(--secondary);
+	color: var(--secondary);
 	font-size: 0.3rem;
 }

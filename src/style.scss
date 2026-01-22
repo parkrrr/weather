@@ -1,11 +1,44 @@
-$background-color: #261447;
-$background-dark: #0d0221;
-$primary: #ff6c11;
-$secondary: #2de2e6;
-$secondary-dark: #2de2e633;
-$highlight: #f9c80e;
+:root {
+    // Default theme (dark)
+    --background-color: #261447;
+    --background-dark: #0d0221;
+    --primary: #ff6c11;
+    --secondary: #2de2e6;
+    --secondary-dark: #2de2e633;
+    --highlight: #f9c80e;
+}
+
+// Light theme
+[data-theme="light"] {
+    --background-color: #f1f5f9;
+    --background-dark: #e2e8f0;
+    --primary: #2563eb;
+    --secondary: #0891b2;
+    --secondary-dark: #0891b233;
+    --highlight: #d97706;
+}
+
+// OLED theme
+[data-theme="oled"] {
+    --background-color: #000000;
+    --background-dark: #0f0e0e;
+    --primary: #3b82f6;
+    --secondary: #06b6d4;
+    --secondary-dark: #06b6d433;
+    --highlight: #f59e0b;
+}
+
+// Windows 95 theme
+[data-theme="win95"] {
+    --background-color: #008080;
+    --background-dark: #6c6c6c;
+    --primary: #000080;
+    --secondary: #000000;
+    --secondary-dark: #c0c0c033;
+    --highlight: #ffff00;
+}
 
 body {
-	background-color: $background-color;
-	font-family: 'Quicksand', sans-serif;
+    background-color: var(--background-color);
+    font-family: 'Quicksand', sans-serif;
 }
