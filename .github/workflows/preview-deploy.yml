@@ -10,6 +10,10 @@ permissions:
   contents: read
   id-token: write
 
+concurrency:
+  group: "preview-deploy-${{ github.event.pull_request.number }}"
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
