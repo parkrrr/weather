@@ -37,6 +37,13 @@ export function App() {
 	// Apply theme to document and save to localStorage
 	useEffect(() => {
 		document.documentElement.setAttribute('data-theme', theme);
+
+		const backgroundColor = getComputedStyle(document.documentElement)
+			.getPropertyValue('--background-color')
+			.trim();
+
+		document.querySelector('meta[name="theme-color"]')?.setAttribute('content', backgroundColor);
+
 		localStorage.setItem('theme', theme);
 	}, [theme]);
 
