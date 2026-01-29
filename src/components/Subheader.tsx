@@ -3,7 +3,11 @@ import { ObservationViewModel, ViewModelGenericTypes } from "../model/Model";
 import style from './Subheader.module.scss';
 import { Location } from './Location';
 
-export function Subheader(props: { stationId: string, latestObservation: ObservationViewModel<ViewModelGenericTypes>, onStationIdChanged: (stationId: string | null) => void }) {
+export function Subheader(props: {
+    stationId: string,
+    latestObservation: ObservationViewModel<ViewModelGenericTypes>,
+    onStationIdChanged: (stationId: string | null) => void
+}) {
     const dateFormatOptions: Intl.DateTimeFormatOptions = {
         month: 'numeric',
         day: 'numeric',

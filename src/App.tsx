@@ -13,6 +13,7 @@ import style from './App.module.scss';
 import { Scale } from './components/Scale';
 import { VNode } from 'preact';
 import { getObservations } from './weather-api/getObservations';
+import { isReport } from './weather-api/IsReport';
 
 export function App() {
 	const [airport, setAirport] = useState<string | null>(null);
@@ -60,7 +61,8 @@ export function App() {
 			return;
 		}
 
-		const viewModels = observations.filter(o => view.nullCheck(o) == false).map(o => view.viewModelFactory(o));
+		// filter out null observations and non-METAR reports (except keep the latest observation regardless)
+		const viewModels = observations.filter((o,i) => view.nullCheck(o) == false && (isReport(o) || i == 0)).map(o => view.viewModelFactory(o));
 		setViewModels(viewModels);
 	}, [view, observations]);
 
