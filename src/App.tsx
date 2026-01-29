@@ -21,7 +21,6 @@ export function App() {
 	const [viewModels, setViewModels] = useState<ObservationViewModel<ViewModelGenericTypes>[]>([]);
 	const [view, setView] = useState<View | null>(getViewByName(localStorage.getItem('view') ?? 'Pressure'));
 	const [scale, setScale] = useState<number>(Number(localStorage.getItem('scale') ?? 3));
-	const [metarOnly, setMetarOnly] = useState<boolean>(localStorage.getItem('metarOnly') === 'true');
 	const [loading, setLoading] = useState<boolean>(true);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 	const [isUsingMocks, setIsUsingMocks] = useState<boolean>(false);
@@ -62,9 +61,10 @@ export function App() {
 			return;
 		}
 
-		const viewModels = observations.filter(o => view.nullCheck(o) == false && (metarOnly ? isReport(o) : true)).map(o => view.viewModelFactory(o));
+		// filter out null observations and non-METAR reports (except keep the latest observation regardless)
+		const viewModels = observations.filter((o,i) => view.nullCheck(o) == false && (isReport(o) || i == 0)).map(o => view.viewModelFactory(o));
 		setViewModels(viewModels);
-	}, [view, observations, metarOnly]);
+	}, [view, observations]);
 
 	useEffect(() => {
 		if (view != null)
@@ -75,11 +75,6 @@ export function App() {
 		if (scale != null)
 			localStorage.setItem('scale', scale.toString());
 	}, [scale])
-
-	useEffect(() => {
-		if (metarOnly != null)
-			localStorage.setItem('metarOnly', metarOnly.toString());
-	}, [metarOnly])
 
 	const changeAirport = (airportCode: string | null) => {
 		if (!airportCode) {
@@ -113,7 +108,7 @@ export function App() {
 		content = (
 			<div className={style.app}>
 				<Header latestObservation={viewModels[0]} now={new Date()} />
-				<Subheader latestObservation={viewModels[0]} stationId={airport} metarOnly={metarOnly} onStationIdChanged={changeAirport} onMetarOnlyChanged={(m) => setMetarOnly(m)} />
+				<Subheader latestObservation={viewModels[0]} stationId={airport} onStationIdChanged={changeAirport} />
 				<Chart view={view} observations={viewModels} />
 				<Navigation initialView={view} onChange={(v) => setView(v)} />
 				<Scale initialScale={scale} onChange={(s) => setScale(s)} />
