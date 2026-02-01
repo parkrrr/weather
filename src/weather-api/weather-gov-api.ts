@@ -756,6 +756,7 @@ export type GeoJsonPolygon = GeoJsonCoordinate[][];
  * * windGust
  * * weather
  * * hazards: Watch and advisory products in effect
+ * * heatRisk
  * * probabilityOfPrecipitation
  * * quantitativePrecipitation
  * * iceAccumulation
@@ -972,6 +973,7 @@ export type GridpointGeoJson = GeoJsonFeature & {
    * * windGust
    * * weather
    * * hazards: Watch and advisory products in effect
+   * * heatRisk
    * * probabilityOfPrecipitation
    * * quantitativePrecipitation
    * * iceAccumulation
@@ -1562,6 +1564,8 @@ export interface Point {
   "@type"?: "wx:Point";
   /** Three-letter identifier for a NWS office. */
   cwa?: NWSForecastOfficeId;
+  /** Whether the specific point is on land or marine */
+  type?: "land" | "marine";
   /** @format uri */
   forecastOffice?: string;
   /** Three-letter identifier for a NWS office. */
