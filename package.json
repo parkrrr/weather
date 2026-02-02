@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@playwright/test": "^1.57.0",
-		"@preact/preset-vite": "^2.10.2",
+		"@preact/preset-vite": "^2.10.3",
 		"@types/node": "^25.0.3",
 		"preact": "^10.28.3",
 		"sass": "^1.97.1",
