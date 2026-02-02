@@ -27,7 +27,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       
       - name: Find and delete storage account
-        uses: azure/CLI@v1
+        uses: azure/CLI@v2
         with:
           inlineScript: |
             account=$(az storage account list --resource-group ${{ secrets.AZURE_RG }} \
