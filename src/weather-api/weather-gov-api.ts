@@ -606,6 +606,55 @@ export interface AlertAtomFeed {
 /** State/territory codes and marine area codes */
 export type AreaCode = StateTerritoryCode | MarineAreaCode;
 
+/** An object representing sunrise, sunset, and twilight information for a location. */
+export interface AstronomicalData {
+  /**
+   * The timestamp of sunrise, defined as when the sun angle is 90°35' from vertical.
+   * @format date-time
+   */
+  sunrise?: string;
+  /**
+   * The timestamp of sunset, defined as when the sun angle is 90°35' from vertical.
+   * @format date-time
+   */
+  sunset?: string;
+  /**
+   * The timestamp when the sun reaches its zenith.
+   * @format date-time
+   */
+  transit?: string;
+  /**
+   * The timestamp of the onset of civil twilight, defined as when the sun angle is 96° from vertical. This is the beginning of civil dawn and lasts until sunrise.
+   * @format date-time
+   */
+  civilTwilightBegin?: string;
+  /**
+   * The timestamp of the end of civil twilight, defined as when the sun angle is 96° from vertical. This is the end of civil dusk, which begins at sunset.
+   * @format date-time
+   */
+  civilTwilightEnd?: string;
+  /**
+   * The timestamp of the onset of nautical twilight, defined as when the sun angle is 102° from vertical. This is the beginning of nautical dawn and lasts until the civil dawn.
+   * @format date-time
+   */
+  nauticalTwilightBegin?: string;
+  /**
+   * The timestamp of the end of nautical twilight, defined as when the sun angle is 102° from vertical. This is the end of nautical dusk, which begins at the end of civil twilight.
+   * @format date-time
+   */
+  nauticalTwilightEnd?: string;
+  /**
+   * The timestamp of the onset of astronomical twilight, defined as when the sun angle is 108° from vertical. This is the beginning of astronomical dawn and lasts until the nautical dawn.
+   * @format date-time
+   */
+  astronomicalTwilightBegin?: string;
+  /**
+   * The timestamp of the end of astronomical twilight, defined as when the sun angle is 108° from vertical. This is the end of astronomical dusk, which begins at the end of nautical twilight.
+   * @format date-time
+   */
+  astronomicalTwilightEnd?: string;
+}
+
 /**
  * ATSU Identifier
  * @pattern ^[A-Z]{3,4}$
@@ -1591,6 +1640,25 @@ export interface Point {
   fireWeatherZone?: string;
   timeZone?: string;
   radarStation?: string;
+  /** An object representing sunrise, sunset, and twilight information for a location. */
+  astronomicalData?: AstronomicalData;
+  /** NOAA Weather Radio metadata for this point */
+  nwr?: {
+    /** Transmitter callsign */
+    transmitter?: string | null;
+    /** The SAME code of this point's county */
+    sameCode?: string;
+    /**
+     * A link to the area NWR broadcast from this transmitter
+     * @format uri
+     */
+    areaBroadcast?: string | null;
+    /**
+     * A link to the local NWR broadcast for this point
+     * @format uri
+     */
+    pointBroadcast?: string | null;
+  };
 }
 
 export type PointGeoJson = GeoJsonFeature & {
