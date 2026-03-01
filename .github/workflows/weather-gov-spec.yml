@@ -57,6 +57,7 @@ jobs:
           # Create pull request using GitHub CLI
           gh pr create \
             --title "Update weather.gov API specification" \
+            --draft \
             --body "Automated update of the weather.gov API specification.
 
           This PR was created automatically by the GitHub Actions workflow.
