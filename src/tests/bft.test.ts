@@ -49,8 +49,8 @@ test('Render Navigation', async ({ page }) => {
 
 test('Render Scale', async ({ page }) => {
   await setupMocksAndNavigate(page, mockObservations);
-  await expect(page.locator('#scale div')).toHaveCount(4);
-  await expect(page.locator('#scale div')).toHaveText(['0.5 day', '1 day', '3 day', '5 day']);
+  await expect(page.locator('#scale div')).toHaveCount(5);
+  await expect(page.locator('#scale div')).toHaveText(['0.5 day', '1 day', '3 day', '5 day', '7 day']);
 });
 
 test('Invalid station shows error message', async ({ page }) => {
