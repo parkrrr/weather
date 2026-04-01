@@ -10,6 +10,8 @@
  * ---------------------------------------------------------------
  */
 
+type UtilRequiredKeys<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
+
 export enum StateTerritoryCode {
   AL = "AL",
   AK = "AK",
@@ -905,8 +907,7 @@ export interface Gridpoint {
           | "periods"
           | "scattered"
           | "slight_chance"
-          | "widespread"
-          | null;
+          | "widespread";
         weather:
           | "blowing_dust"
           | "blowing_sand"
@@ -930,9 +931,8 @@ export interface Gridpoint {
           | "snow_showers"
           | "thunderstorms"
           | "volcanic_ash"
-          | "water_spouts"
-          | null;
-        intensity: "very_light" | "light" | "moderate" | "heavy" | null;
+          | "water_spouts";
+        intensity: "very_light" | "light" | "moderate" | "heavy";
         /** A structured value representing a measurement and its unit of measure. This object is a slightly modified version of the schema.org definition at https://schema.org/QuantitativeValue */
         visibility: QuantitativeValue;
         attributes: (
@@ -1147,10 +1147,7 @@ export interface GridpointHourlyForecastPeriod {
    * @min 1
    */
   number?: number;
-  /**
-   * A textual identifier for the period. This value will not be present for hourly forecasts.
-   * @example "Tuesday Night"
-   */
+  /** A textual identifier for the period. This value will not be present for hourly forecasts. */
   name?: string;
   /**
    * The starting time that this forecast period is valid for.
@@ -1176,7 +1173,7 @@ export interface GridpointHourlyForecastPeriod {
    */
   temperatureUnit?: "F" | "C";
   /** If not null, indicates a non-diurnal temperature trend for the period (either rising temperature overnight, or falling temperature during the day) */
-  temperatureTrend?: "rising" | "falling" | null;
+  temperatureTrend?: "rising" | "falling";
   /** Probability of precipitation for the period. */
   probabilityOfPrecipitation?: QuantitativeValue;
   /** Dewpoint. Only provided in hourly forecasts. */
@@ -1230,10 +1227,7 @@ export interface Gridpoint12HForecastPeriod {
    * @min 1
    */
   number?: number;
-  /**
-   * A textual identifier for the period. This value will not be present for hourly forecasts.
-   * @example "Tuesday Night"
-   */
+  /** A textual identifier for the period. This value will not be present for hourly forecasts. */
   name?: string;
   /**
    * The starting time that this forecast period is valid for.
@@ -1259,7 +1253,7 @@ export interface Gridpoint12HForecastPeriod {
    */
   temperatureUnit?: "F" | "C";
   /** If not null, indicates a non-diurnal temperature trend for the period (either rising temperature overnight, or falling temperature during the day) */
-  temperatureTrend?: "rising" | "falling" | null;
+  temperatureTrend?: "rising" | "falling";
   /** Probability of precipitation for the period. */
   probabilityOfPrecipitation?: QuantitativeValue;
   /**
@@ -1327,7 +1321,6 @@ export type GridpointHourlyForecastJsonLd = GridpointHourlyForecast & {
 /**
  * A time duration in ISO 8601 format.
  * @pattern ^P(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?$
- * @example "P2DT12H"
  */
 export type ISO8601Duration = string;
 
@@ -1345,7 +1338,7 @@ export type JsonLdContext = any[] | object;
 
 /** An object representing a decoded METAR phenomenon string. */
 export interface MetarPhenomenon {
-  intensity: "light" | "heavy" | null;
+  intensity: "light" | "heavy";
   modifier:
     | "patches"
     | "blowing"
@@ -1353,8 +1346,7 @@ export interface MetarPhenomenon {
     | "freezing"
     | "shallow"
     | "partial"
-    | "showers"
-    | null;
+    | "showers";
   weather:
     | "fog_mist"
     | "dust_storm"
@@ -1381,6 +1373,41 @@ export interface MetarPhenomenon {
     | "volcanic_ash";
   rawString: string;
   inVicinity?: boolean;
+}
+
+/** Metadata for an NWS Connect document. */
+export interface NWSConnectDocumentMetadata {
+  /** @format uuid */
+  id?: string;
+  /**
+   * The time when the document becomes active. ISO8601 datetime.
+   * @format date-time
+   */
+  startTime?: string;
+  /**
+   * The time when the document becomes inactive. ISO8601 datetime.
+   * @format date-time
+   */
+  endTime?: string;
+  /**
+   * When the document was last updated. ISO8601 datetime.
+   * @format date-time
+   */
+  updateTime?: string;
+  /**
+   * A short title.
+   * @maxLength 50
+   */
+  title?: string;
+  /** A longer description and/or caption. */
+  description?: string;
+  /** An indicator that a weather story should be emphasized. */
+  priority?: boolean;
+  /**
+   * The URL of the media content for the weather story.
+   * @format uri
+   */
+  download?: string;
 }
 
 export type NWSOfficeId =
@@ -1470,6 +1497,8 @@ export type ObservationCollectionGeoJson = GeoJsonFeatureCollection & {
   features?: {
     properties?: Observation;
   }[];
+  /** Links for retrieving more data from paged data sets */
+  pagination?: PaginationInfo;
 };
 
 export interface ObservationCollectionJsonLd {
@@ -1572,6 +1601,8 @@ export interface Office {
   approvedObservationStations?: string[];
 }
 
+export type OfficeBriefing = NWSConnectDocumentMetadata;
+
 export interface OfficeHeadline {
   "@context"?: JsonLdContext;
   /** @format uri */
@@ -1594,6 +1625,28 @@ export interface OfficeHeadlineCollection {
   "@context": JsonLdContext;
   "@graph": OfficeHeadline[];
 }
+
+export type OfficeWeatherStory = UtilRequiredKeys<
+  NWSConnectDocumentMetadata,
+  | "startTime"
+  | "endTime"
+  | "updateTime"
+  | "title"
+  | "description"
+  | "priority"
+  | "download"
+> & {
+  /** Alternative text description of the content of the image for assistive technology. */
+  altText: string;
+  /**
+   * The order in which a weather story should be displayed. Unique for each object.
+   * @min 1
+   * @max 7
+   */
+  order: number;
+};
+
+export type OfficeWeatherStoryCollection = OfficeWeatherStory[];
 
 /** Links for retrieving more data from paged data sets */
 export interface PaginationInfo {
@@ -1680,36 +1733,24 @@ export interface ProblemDetail {
    * A URI reference (RFC 3986) that identifies the problem type. This is only an identifier and is not necessarily a resolvable URL.
    * @format uri
    * @default "about:blank"
-   * @example "urn:noaa:nws:api:UnexpectedProblem"
    */
   type: string;
-  /**
-   * A short, human-readable summary of the problem type.
-   * @example "Unexpected Problem"
-   */
+  /** A short, human-readable summary of the problem type. */
   title: string;
   /**
    * The HTTP status code (RFC 7231, Section 6) generated by the origin server for this occurrence of the problem.
    * @min 100
    * @max 999
-   * @example 500
    */
   status: number;
-  /**
-   * A human-readable explanation specific to this occurrence of the problem.
-   * @example "An unexpected problem has occurred."
-   */
+  /** A human-readable explanation specific to this occurrence of the problem. */
   detail: string;
   /**
    * A URI reference (RFC 3986) that identifies the specific occurrence of the problem. This is only an identifier and is not necessarily a resolvable URL.
    * @format uri
-   * @example "urn:noaa:nws:api:request:493c3a1d-f87e-407f-ae2c-24483f5aab63"
    */
   instance: string;
-  /**
-   * A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue.
-   * @example "493c3a1d-f87e-407f-ae2c-24483f5aab63"
-   */
+  /** A unique identifier for the request, used for NWS debugging purposes. Please include this identifier with any correspondence to help us investigate your issue. */
   correlationId: string;
   [key: string]: any;
 }
@@ -1898,10 +1939,7 @@ export interface ZoneForecast {
   periods?: {
     /** A sequential identifier number. */
     number: number;
-    /**
-     * A textual description of the period.
-     * @example "This Afternoon"
-     */
+    /** A textual description of the period. */
     name: string;
     /** A detailed textual forecast for the period. */
     detailedForecast: string;
