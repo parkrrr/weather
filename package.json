@@ -7,6 +7,7 @@
 		"build": "tsc --noEmit && vite build",
 		"preview": "vite preview",
 		"generate": "npx -y swagger-typescript-api generate --no-client -p https://api.weather.gov/openapi.json -o ./src/weather-api -n weather-gov-api.ts",
+		"update-mocks": "node scripts/update-mock-observations.mjs",
 		"test": "playwright test"
 	},
 	"dependencies": {
