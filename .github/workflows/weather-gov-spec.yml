@@ -22,11 +22,14 @@ jobs:
         
       - name: Generate API spec
         run: npm run generate
+
+      - name: Update mock observations
+        run: npm run update-mocks
         
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet HEAD -- src/weather-api/weather-gov-api.ts; then
+          if git diff --quiet HEAD -- src/weather-api/weather-gov-api.ts src/tests/mockObservations.ts; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -48,8 +51,8 @@ jobs:
           git checkout -b $BRANCH_NAME
           
           # Add and commit changes
-          git add src/weather-api/weather-gov-api.ts
-          git commit -m "Update weather.gov API specification"
+          git add src/weather-api/weather-gov-api.ts src/tests/mockObservations.ts
+          git commit -m "Update weather.gov API specification and mock observations"
           
           # Push branch
           git push origin $BRANCH_NAME
@@ -64,6 +67,7 @@ jobs:
 
           Changes detected in:
           - \`src/weather-api/weather-gov-api.ts\`
+          - \`src/tests/mockObservations.ts\`
 
           Please review the changes before merging." \
             --base main \
