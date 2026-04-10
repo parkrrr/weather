@@ -11,7 +11,7 @@
 		"test": "playwright test"
 	},
 	"dependencies": {
-		"preact": "^10.28.3"
+		"preact": "^10.29.1"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.58.1",
