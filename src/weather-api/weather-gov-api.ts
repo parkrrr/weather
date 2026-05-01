@@ -486,6 +486,8 @@ export interface Alert {
   description?: string;
   /** The text describing the recommended action to be taken by recipients of the alert message. */
   instruction?: string | null;
+  /** The text note accompanying the alert message. Per CAP spec, this should accompany alerts with a status of "Test". */
+  note?: string | null;
   /**
    * The code denoting the type of action recommended for the target audience.
    * This corresponds to responseType in the CAP specification.
