@@ -486,6 +486,8 @@ export interface Alert {
   description?: string;
   /** The text describing the recommended action to be taken by recipients of the alert message. */
   instruction?: string | null;
+  /** The text note accompanying the alert message. Per CAP spec, this should accompany alerts with a status of "Test". */
+  note?: string | null;
   /**
    * The code denoting the type of action recommended for the target audience.
    * This corresponds to responseType in the CAP specification.
@@ -614,47 +616,47 @@ export interface AstronomicalData {
    * The timestamp of sunrise, defined as when the sun angle is 90°35' from vertical.
    * @format date-time
    */
-  sunrise?: string;
+  sunrise?: string | null;
   /**
    * The timestamp of sunset, defined as when the sun angle is 90°35' from vertical.
    * @format date-time
    */
-  sunset?: string;
+  sunset?: string | null;
   /**
    * The timestamp when the sun reaches its zenith.
    * @format date-time
    */
-  transit?: string;
+  transit?: string | null;
   /**
    * The timestamp of the onset of civil twilight, defined as when the sun angle is 96° from vertical. This is the beginning of civil dawn and lasts until sunrise.
    * @format date-time
    */
-  civilTwilightBegin?: string;
+  civilTwilightBegin?: string | null;
   /**
    * The timestamp of the end of civil twilight, defined as when the sun angle is 96° from vertical. This is the end of civil dusk, which begins at sunset.
    * @format date-time
    */
-  civilTwilightEnd?: string;
+  civilTwilightEnd?: string | null;
   /**
    * The timestamp of the onset of nautical twilight, defined as when the sun angle is 102° from vertical. This is the beginning of nautical dawn and lasts until the civil dawn.
    * @format date-time
    */
-  nauticalTwilightBegin?: string;
+  nauticalTwilightBegin?: string | null;
   /**
    * The timestamp of the end of nautical twilight, defined as when the sun angle is 102° from vertical. This is the end of nautical dusk, which begins at the end of civil twilight.
    * @format date-time
    */
-  nauticalTwilightEnd?: string;
+  nauticalTwilightEnd?: string | null;
   /**
    * The timestamp of the onset of astronomical twilight, defined as when the sun angle is 108° from vertical. This is the beginning of astronomical dawn and lasts until the nautical dawn.
    * @format date-time
    */
-  astronomicalTwilightBegin?: string;
+  astronomicalTwilightBegin?: string | null;
   /**
    * The timestamp of the end of astronomical twilight, defined as when the sun angle is 108° from vertical. This is the end of astronomical dusk, which begins at the end of nautical twilight.
    * @format date-time
    */
-  astronomicalTwilightEnd?: string;
+  astronomicalTwilightEnd?: string | null;
 }
 
 /**
