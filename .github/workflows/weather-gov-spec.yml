@@ -29,7 +29,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet HEAD -- src/weather-api/weather-gov-api.ts src/tests/mockObservations.ts; then
+          if git diff --quiet HEAD -- src/weather-api/weather-gov-api.ts; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -67,7 +67,6 @@ jobs:
 
           Changes detected in:
           - \`src/weather-api/weather-gov-api.ts\`
-          - \`src/tests/mockObservations.ts\`
 
           Please review the changes before merging." \
             --base main \
