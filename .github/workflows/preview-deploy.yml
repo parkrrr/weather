@@ -22,7 +22,7 @@ jobs:
       name: azure
       url: ${{ steps.get-url.outputs.url }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.ref }}
       - uses: actions/setup-node@v6
