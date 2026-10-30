@@ -1,6 +1,6 @@
 {
     "name": "Weather",
-    "short_name": "Wxr",
+    "short_name": "Weather",
     "orientation": "portrait-primary",
     "scope": "https://parkrrr.github.io/weather/",
     "start_url": "/weather/",
@@ -16,7 +16,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#261447",
-    "background_color": "#261447",
+    "theme_color": "#1a1a1c",
+    "background_color": "#1a1a1c",
     "display": "standalone"
 }
