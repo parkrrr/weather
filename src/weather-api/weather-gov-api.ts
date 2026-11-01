@@ -519,6 +519,16 @@ export interface Alert {
   eventCode?: Record<string, any[]>;
 }
 
+export interface ActiveAlertCollection {
+  /** A title describing the alert collection */
+  title?: string;
+  /**
+   * The last time a change occurred to this collection
+   * @format date-time
+   */
+  updated?: string;
+}
+
 export interface AlertCollection {
   /** A title describing the alert collection */
   title?: string;
@@ -531,6 +541,17 @@ export interface AlertCollection {
   pagination?: PaginationInfo;
 }
 
+export type ActiveAlertCollectionGeoJson = GeoJsonFeatureCollection & {
+  features?: {
+    /**
+     * An object representing a public alert message.
+     * Unless otherwise noted, the fields in this object correspond to the National Weather Service CAP v1.2 specification, which extends the OASIS Common Alerting Protocol (CAP) v1.2 specification and USA Integrated Public Alert and Warning System (IPAWS) Profile v1.0. Refer to this documentation for more complete information.
+     * http://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2-os.html http://docs.oasis-open.org/emergency/cap/v1.2/ipaws-profile/v1.0/cs01/cap-v1.2-ipaws-profile-cs01.html https://vlab.noaa.gov/web/nws-common-alerting-protocol/cap-documentation
+     */
+    properties?: Alert;
+  }[];
+} & ActiveAlertCollection;
+
 export type AlertCollectionGeoJson = GeoJsonFeatureCollection & {
   features?: {
     /**
@@ -541,6 +562,11 @@ export type AlertCollectionGeoJson = GeoJsonFeatureCollection & {
     properties?: Alert;
   }[];
 } & AlertCollection;
+
+export type ActiveAlertCollectionJsonLd = ActiveAlertCollection & {
+  "@context"?: JsonLdContext;
+  "@graph"?: Alert[];
+};
 
 export type AlertCollectionJsonLd = AlertCollection & {
   "@context"?: JsonLdContext;
